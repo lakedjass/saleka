@@ -2,20 +2,23 @@ package com.saleka.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
 public class SalekaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SalekaApplication.class, args);
 	}
-
-	@GetMapping("/")
-	public String hello() {
-		return "hello world qui ne durera pas très longtemps inch'Allah";
-	}
-
 }
+
+/*@Configuration
+static class SecurityConfig extends GlobalAuthenticationConfigurerAdapter {
+
+	@Override
+	public void init(AuthenticationManagerBuilder auth) throws Exception {
+
+		auth.inMemoryAuthentication()
+				.withUser("user").password("user").roles("USER").and()
+				.withUser("hero").password("hero").roles("USER", "HERO");
+	}
+}*/
