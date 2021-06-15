@@ -11,7 +11,7 @@ Contributions are always **welcome and recommended**! Here is how for beginner's
     * Contributions are only accepted through GitHub pull requests.
     * Finally, contributed code must work in all supported browsers (see above for browser support).
 2. Installation :
-    * Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
+    * Fork the repository ([here is the guide](https://help.github.com/posts/fork-a-repo/)).
     * Clone to your machine
 
     ```bash
