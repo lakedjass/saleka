@@ -17,11 +17,6 @@ import java.util.*;
 public class UserService implements UserDetailsService {
     @Autowired
     private final UserRepository userRepository;
- /*   @Autowired
-    private IUserService service;
-
-    @Autowired
-    private MessageSource messages;*/
 
     @Autowired
     private final RoleRepository roleRepository;
@@ -42,7 +37,6 @@ public class UserService implements UserDetailsService {
         }
 
         return userPrincipal;
-
     }
 
     /*

@@ -29,7 +29,6 @@ public class AccesDeniedHandler implements AccessDeniedHandler
                     + httpServletRequest.getRequestURI());
         }
 
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() +
-                "/security/accessDenied");
+        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/accessDenied");
     }
 }

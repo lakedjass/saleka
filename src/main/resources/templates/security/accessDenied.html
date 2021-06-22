@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="site/layouts/default">
 <head>
-    <meta charset="UTF-8">
-    <title>SALEKA | Acces denied</title>
+    <title>Contact</title>
 </head>
 <body>
-    <h>cette page vous est interdite</h>
+
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section layout:fragment="hero" id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>Request Page Error</li>
+            </ol>
+            <h2>Contacter l'administrateur</h2>
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <th:block layout:fragment="content">
+        <section class="inner-page pt-3">
+            <div class="container">
+                <h1 class="text-capitalize">Vous n'avez pas de droit d'acceder à cette page! Veuillez contacter l'administrateur du site <a
+                        href="#"><strong>ici</strong></a></h1>
+            </div>
+        </section>
+    </th:block>
+
+
+<!-- End #main -->
+
+
 </body>
 </html>

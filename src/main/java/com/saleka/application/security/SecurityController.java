@@ -20,11 +20,19 @@ public class SecurityController {
         return "security/logout";
     }
 
+    @GetMapping("/accessDenied")
+    public String accessForbiden403(){
+
+        return "security/accessDenied";
+    }
+
     @GetMapping("/login-error")
     public String accesDenied(Model model){
         model.addAttribute("loginError", true);
         return "security/login";
     }
+
+
 
 
 

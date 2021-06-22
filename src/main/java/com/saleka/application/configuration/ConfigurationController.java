@@ -1,6 +1,7 @@
 package com.saleka.application.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,9 +20,10 @@ public class ConfigurationController {
     }
 
     @GetMapping()
-    public List<ConfigurationSite> getConfigurations(){
+    public List<ConfigurationSite> getConfigurations(Model model){
 
-        System.out.println(configurationService.getConfigurations());
+
+
         return configurationService.getConfigurations();
     }
 }
