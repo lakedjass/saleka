@@ -286,25 +286,25 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
+                                <a th:href="@{/admin/posts}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Afficher</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/charts/flot.html" class="nav-link">
+                                <a th:href="@{/admin/addPost}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Ajouter</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/charts/inline.html" class="nav-link">
+                                <a th:href="@{/admin/editPost}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Modifier</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/charts/uplot.html" class="nav-link">
+                                <a th:href="@{/admin/deletePost}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Supprimer</p>
                                 </a>
@@ -346,7 +346,7 @@
 <!-- ./wrapper -->
 
 <!-- modalNewConfiguration -->
-<div class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div layout:fragment="modal_post" class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

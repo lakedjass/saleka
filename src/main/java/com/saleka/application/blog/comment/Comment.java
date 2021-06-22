@@ -22,20 +22,17 @@ public class Comment {
     @Column(nullable = false)
     private String body;
 
-    @ManyToOne
-    @JsonBackReference
-    private Post post;
 
     @ManyToOne
-    @JsonBackReference
     private Comment comment;
 
+    @ManyToOne
+    private Post post;
+
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
     private List<Tag> tags;
 
 
@@ -58,13 +55,6 @@ public class Comment {
         this.body = body;
     }
 
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
 
     public String getAuthor() {
         return author;
@@ -99,12 +89,10 @@ public class Comment {
     }
 
     public void setAllProperties(Comment comment , boolean withId){
-        setAuthor(post.getAuthor());
-        setBody(post.getBody());
-//        setDoc(post.getDoc());
-//        setTitle(post.getTitle());
+        setAuthor(comment.getAuthor());
+        setBody(comment.getBody());
         if(withId){
-            setId(post.getId());
+            setId(comment.getId());
         }
     }
 }

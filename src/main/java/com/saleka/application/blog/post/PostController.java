@@ -18,20 +18,18 @@ public class PostController {
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
-        this.headers.add("Content-type", "application/json");
+        this.headers.add("Content-Type", "application/json");
     }
 
 
     @GetMapping
     public ResponseEntity<List<Post>> getPosts(){
-        List<Post> posts = postService.getPosts();
-        return ResponseEntity.ok().headers(headers).body(posts);
+        return ResponseEntity.ok().headers(headers).body(postService.getPosts());
     }
 
     @PostMapping
     public ResponseEntity<Post> newPost(@RequestBody Post post){
-        Post post1 = postService.newPost(post);
-        return ResponseEntity.ok().headers(headers).body(post1);
+        return  ResponseEntity.ok().headers(headers).body(postService.newPost(post)) ;
     }
 
     @DeleteMapping(path = "{id}")

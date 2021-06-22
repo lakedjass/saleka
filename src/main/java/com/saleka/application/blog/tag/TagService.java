@@ -18,7 +18,7 @@ public class TagService {
 
     public List<Tag> getTags(){
         List<Tag> tags = tagRepository.findAll();
-        if(tags.equals(null)){
+        if(tags == null){
             throw new IllegalStateException("Error Found");
         }
         return tags;

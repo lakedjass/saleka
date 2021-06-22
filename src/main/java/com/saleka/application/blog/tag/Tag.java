@@ -17,12 +17,10 @@ public class Tag {
     private String key;
 
     @ManyToOne
-    @JsonBackReference
-    private Post post;
+    private Comment comment;
 
     @ManyToOne
-    @JsonBackReference
-    private Comment comment;
+    private Post post;
 
     public Tag() {
     }
@@ -48,13 +46,6 @@ public class Tag {
         this.key = key;
     }
 
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
 
     public Comment getComment() {
         return comment;
@@ -62,6 +53,14 @@ public class Tag {
 
     public void setComment(Comment comment) {
         this.comment = comment;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public void setAllProperties(Tag tag , boolean withId){

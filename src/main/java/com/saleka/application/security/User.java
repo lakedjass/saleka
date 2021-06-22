@@ -1,6 +1,8 @@
 package com.saleka.application.security;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.saleka.application.blog.post.Post;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,6 +39,9 @@ public class User implements Serializable{
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    private Collection<Post> posts;
+
     public String getFirstName() {
         return firstName;
     }
@@ -64,6 +69,7 @@ public class User implements Serializable{
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -90,6 +96,14 @@ public class User implements Serializable{
 
     public boolean isEnabled() {
         return true;
+    }
+
+    public Collection<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Collection<Post> posts) {
+        this.posts = posts;
     }
 
     public boolean hasRole(String roleName) {

@@ -3,6 +3,8 @@ package com.saleka.application.blog.post;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.saleka.application.blog.comment.Comment;
 import com.saleka.application.blog.tag.Tag;
+import com.saleka.application.security.User;
+import com.saleka.application.security.UserPrincipal;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,60 +18,42 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    private String author,title;
+    @ManyToOne
+    private User author;
 
+    @Column(nullable = false, columnDefinition = "TEXT", length = 1000)
+    private String title;
+
+    @Column(columnDefinition = "TEXT", length = 25000)
     private String body;
 
-    private LocalDate doc= LocalDate.now();
+    private LocalDate doc;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    private List<Tag> tags;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private List<Tag> tags;
 
     public Post() {
     }
 
     public Post(String title) {
         this.title = title;
-        this.author = "Djialeu";
         this.body = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     }
 
-    public Post(Long id, String author, String title, String body, LocalDate doc) {
-        this.id = id;
-        this.author = author;
-        this.title = title;
-        this.body = body;
-        this.doc = doc;
+    public User getAuthor() {
+        return author;
     }
 
-    public Post(String author, String title, String body, LocalDate doc) {
+    public void setAuthor(User author) {
         this.author = author;
-        this.title = title;
-        this.body = body;
-        this.doc = doc;
-    }
-
-    public Post(Long id, String author, String title, String body, LocalDate doc, List<Comment> comments) {
-        this.id = id;
-        this.author = author;
-        this.title = title;
-        this.body = body;
-        this.doc = doc;
-        this.comments = comments;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public String getAuthor() {
-        return author;
     }
 
     public String getTitle() {
@@ -88,10 +72,6 @@ public class Post {
         this.id = id;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -104,6 +84,14 @@ public class Post {
         this.doc = doc;
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
     public List<Comment> getComments() {
         return comments;
     }
@@ -113,7 +101,6 @@ public class Post {
     }
 
     public void setAllProperties(Post post , boolean withId){
-        setAuthor(post.getAuthor());
         setBody(post.getBody());
         setDoc(post.getDoc());
         setTitle(post.getTitle());

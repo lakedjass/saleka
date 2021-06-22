@@ -17,7 +17,7 @@ public class CommentService {
 
     public List<Comment> getComments(){
         List<Comment> posts = commentRepository.findAll();
-        if(posts.equals(null)){
+        if(posts == null){
             throw new IllegalStateException("Error Found");
         }
         //return new ResponseEntity<>(commentRepository.findAll() , this.headers , HttpStatus.OK) ;

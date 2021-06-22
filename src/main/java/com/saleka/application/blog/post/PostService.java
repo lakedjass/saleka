@@ -18,7 +18,7 @@ public class PostService {
 
     public List<Post> getPosts(){
         List<Post> posts = postRepository.findAll();
-        if(posts.equals(null)){
+        if(posts == null){
             throw new IllegalStateException("Error Found");
         }
         return posts;
@@ -38,6 +38,11 @@ public class PostService {
             throw new IllegalStateException("No Post Found For This ID");
         }
         postRepository.deleteById(id);
+    }
+
+    public Post findById(Long id){
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalStateException("No Post Found... Please pass a correct ID"));
+        return post;
     }
 
     @Transactional
