@@ -23,6 +23,7 @@ public class User implements Serializable{
     @Column(unique = true)
     private String email;
     private String password;
+    @Column(nullable = true, length = 64)
     private String image;
     private boolean enabled;
     private boolean tokenExpired;
@@ -36,6 +37,14 @@ public class User implements Serializable{
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -102,6 +111,13 @@ public class User implements Serializable{
         }
 
         return false;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (image == null || id == null) return null;
+
+        return "src/main/resources/static/media/images/" + image;
     }
 
 }

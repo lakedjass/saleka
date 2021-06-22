@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="dist/css/adminSaleka.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- ./wrapper -->
@@ -185,16 +186,32 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div  sec:authorize="isAuthenticated()" class="info">
-                    <a sec:authorize="isAuthenticated()" sec:authentication="name" th:text="Gues">Guest</a>
+                    <a id="userProfilePhoto" th:href="@{/admin/upload}"><img th:src="${user.getImage()} ? '/media/images/'+ ${user.getImage()} : '/media/images/no-user-photo.jpeg'" id="userProfileImage" class="img-circle elevation-2" alt="User Image"></a>
                 </div>
                 <div class="info">
-                    <a th:href="@{/logout}" class="d-block">Log out</a>
+                    <a href="#">Guest</a>
+                </div>
+                <div class="info">
+                    <a th:href="@{/logout}" class="d-block"><i class="fa fa-user-secret"></i>Deconnexion</a>
                 </div>
             </div>
-
+            <div class="" id="userProfileBloc">
+                <form th:action="@{/admin/upload}"
+                      method="post"
+                      enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="file-drop-area">
+                            <span class="choose-file-button"><i class="fa fa-upload"></i>Choisir</span>
+                            <span class="file-message">ou glisser</span>
+                            <input type="file" name="image" accept=".pgn, .jpeg, .jpg, .gif, .jfif" class="file-input" id="exampleInputFile">
+                        </div>
+                    </div>
+                    <div id="divImageMediaPreview"></div>
+                    <div class="form-group">
+                        <button class="userProfileSubmitButton" type="submit">Importer</button>
+                    </div>
+                </form>
+            </div>
             <!-- SidebarSearch Form -->
             <div class="form-inline">
                 <div class="input-group" data-widget="sidebar-search">
@@ -213,39 +230,19 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                    <li class="nav-item menu-open">
-                        <a th:href="@{/admin/dashboard}" class="nav-link active">
+                        <a th:href="@{/admin/dashboard}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Dashboard
+                                Tableau de bord
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <!--<ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="./index.html" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v1</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./index2.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v2</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./index3.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v3</p>
-                                </a>
-                            </li>
-                        </ul>-->
                     </li>
                     <li class="nav-item">
                         <a th:href="@{/admin/listConfiguration}" class="nav-link">
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
-                                Parmétrage Home
+                               Pages
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -253,25 +250,13 @@
                             <li class="nav-item">
                                 <a th:href="@{/admin/listConfiguration}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>liste</p>
+                                    <p>Home Page</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a th:href="@{/admin/addConfiguration}"class="nav-link">
+                                <a th:href="@{/admin/journaux}"class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>ajouter une configuration</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a th:href="@{/admin/changeConfiguration}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Modifier</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a th:href="@{/admin/deleteConfiguration}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Supprimer</p>
+                                    <p>Historique</p>
                                 </a>
                             </li>
                         </ul>
@@ -311,6 +296,24 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-header"><i class="nav-icon fas fa-table"></i><strong>GESTION DES UTILISATEURS</strong></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-user nav-icon"></i>
+                            <p>
+                                Utilisateurs
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a th:href="@{/admin/users}" href="pages/charts/chartjs.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Afficher</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -330,10 +333,10 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+        <strong>Copyright &copy; 2021<a href="https://adminlte.io">Saleka Administration</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.1.0-rc
+            <b>Version</b> 1.0
         </div>
     </footer>
 
@@ -345,33 +348,25 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- modalNewConfiguration -->
-<div class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- modalNewConfiguration
+<div class="modal fade" id="userProfilePhotoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h3 class="modal-title" id="exampleModalLabel">Telecharger une image</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- form start -->
-                <form th:action="@{/admin/addConfiguration}" method="post">
+                 form start
+                <form th:action="@{/files/upload}" method="post">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Theme</label>
-                            <input class="form-control" id="exampleInputEmail1" placeholder="Enter theme name" name="theme">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">logo</label>
-                            <input class="form-control" id="exampleInputPassword1" placeholder="Entrer un logo" name="logo">
-                        </div>
-                        <!--<div class="form-group">
-                            <label for="exampleInputFile">Charg</label>
+                            <label for="exampleInputFile">cliquez <i class="fa fa-chevron-down"></i></label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                                    <input type="file" name="image" accept="image/pgn, image/jpeg, image/jpg" class="custom-file-input" id="exampleInputFile">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
@@ -382,9 +377,10 @@
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>-->
+                        </div>
                     </div>
-                    <!-- /.card-body -->
+                </form>
+                     /.card-body
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -394,7 +390,7 @@
         </div>
     </div>
 </div>
-<!-- modalNewConfiguration -->
+ modalNewConfiguration -->
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -429,5 +425,25 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<!-- Page specific script -->
+<script src="dist/js/pages/adminSaleka.js"></script>
+<!-- Page specific script -->
+<!--<script>
+    $(function () {
+        $("#userDatatable").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#userDatatable').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>-->
 </body>
 </html>

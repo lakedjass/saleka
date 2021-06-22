@@ -8,9 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String home(ModelMap modelMap){
+    public String home(){
 
-       // modelMap.put("name","bonjour tout le monde de thymeleaf");
         return "site/home";
+    }
+    @GetMapping("/contact")
+    public String contact(){
+
+        return "site/contact";
+    }
+    @GetMapping("/services")
+    public String services(){
+
+        return "site/services";
+    }
+    @GetMapping("/about")
+    public String about(){
+
+        return "site/about";
     }
 }

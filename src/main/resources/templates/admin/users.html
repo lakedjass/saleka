@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin/layouts/default">
+<head>
+    <title>Configuration</title>
+</head>
+
+<body>
+
+<!-- Content Header (Page header) -->
+<div layout:fragment="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Liste de tous les utilisateurs</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+                    <li class="breadcrumb-item active">Liste</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section layout:fragment="content"class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="userDatatable" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Nom</th>
+                                <th>email</th>
+                                <th>photo</th>
+                                <th>role</th>
+                                <th>Privilieges</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="userInfo : ${usersList}">
+                                <td th:text="${userInfo.getId()}">Trident</td>
+                                <td th:text="${userInfo.getFirstName()}">Trident</td>
+                                <td th:text="${userInfo.getEmail()}">X</td>
+                                <td class="imageListUser"><img th:src="'/media/images/'+ ${userInfo.getImage()}"  class="img-circle elevation-2" alt="User Image">
+                                </td>
+                                <td th:text="${userInfo.getRoles()[0]}">Win 95+</td>
+                                <td th:text="${userInfo.getLastName()}"> 4</td>
+                                <td><a th:href="@{/admin/showUserProfile}"><i class="fas fa-eye nav-icon"></i></a>&nbsp;<a th:href="@{/editUserProfile}"><i class="fas fa-edit nav-icon"></i></a>&nbsp;<a
+                                        th:href="@{/admin/deleteUserProfile}"><i class="fas fa-trash nav-icon"></i></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
+</body>
+
+</html>

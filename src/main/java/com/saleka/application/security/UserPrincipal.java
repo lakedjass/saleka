@@ -35,7 +35,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getFirstName() + user.getLastName();
+        return user.getFirstName() + " " + user.getLastName();
     }
 
     @Override
@@ -62,4 +62,13 @@ public class UserPrincipal implements UserDetails {
         return this.user.hasRole(roleName);
     }
 
+    public String getEmail() {
+
+        return user.getEmail();
+    }
+
+    public String getImage() {
+
+        return user.getImage();
+    }
 }
