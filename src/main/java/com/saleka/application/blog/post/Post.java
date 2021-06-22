@@ -21,7 +21,7 @@ public class Post {
     @ManyToOne
     private User author;
 
-    @Column(nullable = false, columnDefinition = "TEXT", length = 1000)
+    @Column(nullable = false, columnDefinition = "TEXT", length = 1500)
     private String title;
 
     @Column(columnDefinition = "TEXT", length = 25000)
