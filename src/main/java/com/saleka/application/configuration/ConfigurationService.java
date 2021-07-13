@@ -8,20 +8,26 @@ import java.util.List;
 @Service
 public class ConfigurationService {
 
-    private final ConfigurationSiteRepository configurationSiteRepository;
+    @Autowired
+    private ConfigurationSiteRepository configurationSiteRepository;
 
     @Autowired
     public ConfigurationService(ConfigurationSiteRepository configurationSiteRepository) {
         this.configurationSiteRepository = configurationSiteRepository;
     }
 
-    public List<ConfigurationSite> getConfigurations() {
+    public List<ConfigurationSite> getAllSiteConfigurations() {
         return configurationSiteRepository.findAll();
 
     }
 
-    public void saveConfigurationSite(ConfigurationSite configurationSite){
+    public List<ConfigurationSite> getConfigurationSite(){
 
-        configurationSiteRepository.save(configurationSite);
+        return configurationSiteRepository.findAll();
+    }
+
+
+    public void save(ConfigurationSite configurationSiteA) {
+      configurationSiteRepository.saveAndFlush(configurationSiteA);
     }
 }

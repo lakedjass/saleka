@@ -186,29 +186,29 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <a id="userProfilePhoto" th:href="@{/admin/upload}"><img th:src="${user.getImage()} ? '/media/images/'+ ${user.getImage()} : '/media/images/no-user-photo.jpeg'" id="userProfileImage" class="img-circle elevation-2" alt="User Image"></a>
+                    <a id="userProfilePhoto" th:href="@{/upload/images}"><img th:src="${user.getImage()} ? '/media/images/'+ ${user.getImage()} : '/media/images/no-user-photo.jpeg'" id="userProfileImage" class="img-circle elevation-2" alt="User Image" required></a>
                 </div>
                 <div class="info">
-                    <a href="#">Guest</a>
+                    <a th:text="${user.getUsername()}" href="#">Guest</a>
                 </div>
                 <div class="info">
                     <a th:href="@{/logout}" class="d-block"><i class="fa fa-user-secret"></i>Deconnexion</a>
                 </div>
             </div>
             <div class="" id="userProfileBloc">
-                <form th:action="@{/admin/upload}"
+                <form th:action="@{/upload/images}"
                       method="post"
                       enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="file-drop-area">
                             <span class="choose-file-button"><i class="fa fa-upload"></i>Choisir</span>
                             <span class="file-message">ou glisser</span>
-                            <input type="file" name="image" accept=".pgn, .jpeg, .jpg, .gif, .jfif" class="file-input" id="exampleInputFile">
+                            <input type="file" name="image" accept=".pgn, .jpeg, .jpg, .gif, .jfif" class="file-input" id="exampleInputFile" required>
                         </div>
                     </div>
                     <div id="divImageMediaPreview"></div>
                     <div class="form-group">
-                        <button class="userProfileSubmitButton" type="submit">Importer</button>
+                        <button class="userProfileSubmitButton" type="submit" th:name="location" th:value="userprofile">Importer</button>
                     </div>
                 </form>
             </div>
@@ -229,12 +229,11 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                   <li class="nav-item menu-open">
-                        <a th:href="@{/admin/dashboard}" class="nav-link active">
+                   <li class="nav-item">
+                        <a th:href="@{/admin/dashboard}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Tableau de bord
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                     </li>

@@ -10,15 +10,3 @@ public class SalekaApplication {
 		SpringApplication.run(SalekaApplication.class, args);
 	}
 }
-
-/*@Configuration
-static class SecurityConfig extends GlobalAuthenticationConfigurerAdapter {
-
-	@Override
-	public void init(AuthenticationManagerBuilder auth) throws Exception {
-
-		auth.inMemoryAuthentication()
-				.withUser("user").password("user").roles("USER").and()
-				.withUser("hero").password("hero").roles("USER", "HERO");
-	}
-}*/

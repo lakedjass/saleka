@@ -13,26 +13,98 @@
 <!-- Content Header (Page header) -->
 <div layout:fragment="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
             <div class="col-sm-6">
-                <h1 class="m-0">Paramétage Page d'acceuil</h1>
+                <h1 class="m-0">Paramétage Pages Site</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Configuration</a></li>
-                    <li class="breadcrumb-item active">Liste</li>
+                    <li class="breadcrumb-item active">Home</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
+        <div class="row">
+            <div class="card-tools">
+                <ul class="pagination pagination-sm float-right">
+                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
 
 <!-- Main content -->
 <section layout:fragment="content">
-    <div class="container-fluid">
+    <div class="container-fluid ParentBox">
+        <div class="" id="salekaTopbarEmailDiv">
+            <form th:action="@{/admin/editSiteConfiguration}">
+                <div class="form-group">
+                    <input type="email" name="emailCorp" placeholder="Entrer la nouvelle adresse mail" required>
+                </div>
+                <div id="divImageMediaPreview"></div>
+                <div class="form-group">
+                    <button class="topbarButton" type="submit">Envoyer</button>
+                    <button class="topbarButton cancel" type="button">annuler</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.bloc pop pup email-->
+        <div class="" id="salekaTopbarTelDiv">
+            <form th:action="@{/admin/editSiteConfiguration}">
+                <div class="form-group">
+                    <input type="text" name="telCorp" placeholder="saisir numéro" required>
+                </div>
+                <div class="form-group">
+                    <button class="topbarButton" type="submit">Envoyer</button>
+                    <button class="topbarButton cancel" type="button">Annuler</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.bloc pop pup tel-->
+        <div class="" id="salekaTopbarSloganDiv">
+            <form th:action="@{/admin/editSiteConfiguration}">
+                <div class="form-group">
+                    <input type="text" name="sloganCorp" placeholder="saisir Slogan" required>
+                </div>
+                <div class="form-group">
+                    <button class="topbarButton" type="submit" required>Envoyer</button>
+                    <button class="topbarButton cancel" type="button">Annuler</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.bloc pop pup slogan-->
+        <div class="" id="salekaHeroTitreDiv">
+            <form th:action="@{/admin/editSiteConfiguration}">
+                <div class="form-group">
+                    <input type="text" name="heroTitre" placeholder="saisir Titre princial" required>
+                </div>
+                <div class="form-group">
+                    <button class="topbarButton" type="submit" required>Envoyer</button>
+                    <button class="topbarButton cancel" name="cancel" type="button">Annuler</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.bloc pop pup hero title-->
+        <div class="" id="salekaHeroSousTitreDiv">
+            <form th:action="@{/admin/editSiteConfiguration}">
+                <div class="form-group">
+                    <input type="text" name="heroSoustitre" placeholder="saisir sous Titre princial" required>
+                </div>
+                <div class="form-group">
+                    <button class="topbarButton" type="submit" required>Envoyer</button>
+                    <button class="topbarButton cancel" type="button">Annuler</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.bloc pop pup hero subtitle-->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Topbar</h3>
@@ -52,20 +124,20 @@
                             <tr>
                                 <td>1.</td>
                                 <td>Email entreprise</td>
-                                <td>support@saleka.com</td>
-                                <td><a href="#"><i class="nav-icon fas fa-edit"></i>edit</a></td>
+                                <td th:text="${configurations[0].getEmailCorp()}">support@saleka.com</td>
+                                <td><a href="#" id="salekaTopbarEmail"><i class="nav-icon fas fa-edit"></i>edit</a></td>
                             </tr>
                             <tr>
                                 <td>2.</td>
                                 <td>telephone</td>
-                                <td>+237 658 265 555</td>
-                                <td><i class="fa fa-pencil"></i>edit</td>
+                                <td th:text="${configurations[0].getTelCorp()}">+237 658 265 555</td>
+                                <td><a href="#" id="salekaTopbarTel"><i class="nav-icon fas fa-edit"></i>edit</a></td>
                             </tr>
                             <tr>
                                 <td>3.</td>
                                 <td>Slogan</td>
-                                <td> </td>
-                                <td><i class="fa fa-pencil"></i>edit</td>
+                                <td th:text="${configurations[0].getSloganCorp()}"> </td>
+                                <td><a href="#" id="salekaTopbarSlogan"><i class="nav-icon fas fa-edit"></i>edit</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -138,138 +210,59 @@
                 <!-- /.card -->
             </div>
             <!-- /.col -->
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Simple Full Width Table</h3>
-
-                        <div class="card-tools">
-                            <ul class="pagination pagination-sm float-right">
-                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                            </ul>
+                        <h3 class="card-title">Image de fond & Titres par dessus</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img id="imgHomeBackground" th:src="'/media/images/'+ ${configurations[0].getImagePrincipal()}" class="img-fluid" alt="image de fond home">
+                            </div>
+                            <div class="col-md-6 ParentBox">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Zone</th>
+                                        <th>Valeur</th>
+                                        <th style="width: 40px">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td>Titre principal</td>
+                                        <td th:text="${configurations[0].getTitrePrincipal()}">valeur Titre ppal</td>
+                                        <td><a href="#" id="salekaHeroTitre" ><i class="nav-icon fas fa-edit"></i>edit</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5.</td>
+                                        <td>Sous titre pricnipal</td>
+                                        <td th:text="${configurations[0].getSousTitrePrincipal()}">valeur sous titre</td>
+                                        <td><a href="#" id="salekaHeroSousTitre"><i class="nav-icon fas fa-edit"></i>edit</a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <form th:action="@{/upload/images}"
+                                      method="post"
+                                      enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <div class="file-drop-area">
+                                            <span class="choose-file-button"><i class="fa fa-upload"></i>Choisir</span>
+                                            <span class="file-message">ou glisser</span>
+                                            <input type="file" name="image" accept=".pgn, .jpeg, .jpg, .gif, .jfif" class="file-input" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button th:name="location" th:value="homepage" type="submit">Télécharger l'image</button>
+                                        <button type="button" id="setBackgroundHome">Définir l'image comme fond</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-danger">55%</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-warning">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-primary">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar bg-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-success">90%</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Striped Full Width Table</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-danger">55%</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-warning">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-primary">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar bg-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-success">90%</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </div>
                     <!-- /.card-body -->
                 </div>

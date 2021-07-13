@@ -70,8 +70,79 @@
 .imageListUser{
     width: 120px;
     height: 50px;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+
 }
 .imageListUser img{
     width: 98%;
     padding: 2%;
+}
+/* Configuration pages site web*/
+/*Home Page*/
+.ParentBox{
+    position: relative;
+}
+/* Topbar */
+#salekaTopbarEmailDiv{
+    display: none;
+    width: 30% ;
+    position: absolute;
+    background: white;
+    margin: 1%;
+    padding: 1%;
+    top: 153px;
+    left: 414px;
+    box-shadow: rgba(0, 0, 0,1) 0px 5px 15px;
+    z-index: 1000;
+}
+#salekaTopbarTelDiv{
+    display: none;
+    width: 30% ;
+    position: absolute;
+    background: white;
+    margin: 1%;
+    padding: 1%;
+    top: 191px;
+    left: 414px;
+    box-shadow: rgba(0, 0, 0,1) 0px 5px 15px;
+    z-index: 1000;
+}
+#salekaTopbarSloganDiv{
+    display: none;
+    width: 30% ;
+    position: absolute;
+    background: white;
+    margin: 1%;
+    padding: 1%;
+    top: 212px;
+    left: 414px;
+    box-shadow: rgba(0, 0, 0,1) 0px 5px 15px;
+    z-index: 1000;
+}
+
+/*Hero section*/
+#salekaHeroTitreDiv {
+    display: none;
+    width: 30%;
+    position: absolute;
+    background: white;
+    margin: 1%;
+    padding: 1%;
+    top: 81px;
+    left: 1029px;
+    box-shadow: rgba(0, 0, 0, 1) 0px 5px 15px;
+    z-index: 10001;
+}
+
+#salekaHeroSousTitreDiv{
+    display: none;
+    width: 30% ;
+    position: absolute;
+    background: white;
+    margin: 1%;
+    padding: 1%;
+    top: 142px;
+    left: 1078px;
+    box-shadow: rgba(0, 0, 0,1) 0px 5px 15px;
+    z-index: 1000;
 }
