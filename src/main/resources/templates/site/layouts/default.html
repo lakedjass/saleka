@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE ">SALEKA | </title>
+        <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE ">SALEKA</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
@@ -45,12 +45,12 @@
     <section id="topbar" class="d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">Support@saleka.cm</a></i>
-                <i class="bi bi-phone d-flex align-items-center ms-4"><span>+237 985 656 331</span></i>
+                <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com" th:text="${site[0].getEmailCorp()}">Support@saleka.cm</a></i>
+                <i class="bi bi-phone d-flex align-items-center ms-4"><span th:text="${site[0].getTelCorp()}">+237 985 656 331</span></i>
             </div>
 
             <div class="cta d-none d-md-flex align-items-center">
-                <a href="#about" class="scrollto">C'est parti!</a>
+                <a href="#about" class="scrollto" th:text="${site[0].getSloganCorp()}">C'est parti!</a>
             </div>
         </div>
     </section>

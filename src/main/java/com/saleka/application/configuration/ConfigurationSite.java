@@ -6,10 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
-public final class ConfigurationSite implements Serializable {
+public class ConfigurationSite implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO )
     @Id
     private long id;
@@ -42,8 +41,53 @@ public final class ConfigurationSite implements Serializable {
     private String bloc2AboutSousTitre2;
 
     //clients
-    private static Collection<String> getclientImage(Collection<String> images){return images;};
+    private Collection<String> getclientImage(Collection<String> images){return images;};
 
+    public String getEmailCorp() {
+        return emailCorp;
+    }
 
+    public void setEmailCorp(String emailCorp) {
+        this.emailCorp = emailCorp;
+    }
 
+    public String getTelCorp() {
+        return telCorp;
+    }
+
+    public void setTelCorp(String telCorp) {
+        this.telCorp = telCorp;
+    }
+
+    public String getSloganCorp() {
+        return sloganCorp;
+    }
+
+    public void setSloganCorp(String sloganCorp) {
+        this.sloganCorp = sloganCorp;
+    }
+
+    public String getTitrePrincipal() {
+        return titrePrincipal;
+    }
+
+    public void setTitrePrincipal(String titrePrincipal) {
+        this.titrePrincipal = titrePrincipal;
+    }
+
+    public String getSousTitrePrincipal() {
+        return sousTitrePrincipal;
+    }
+
+    public void setSousTitrePrincipal(String sousTitrePrincipal) {
+        this.sousTitrePrincipal = sousTitrePrincipal;
+    }
+
+    public String getImagePrincipal() {
+        return imagePrincipal;
+    }
+
+    public void setImagePrincipal(String imagePrincipal) {
+        this.imagePrincipal = imagePrincipal;
+    }
 }

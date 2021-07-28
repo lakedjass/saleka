@@ -1,4 +1,4 @@
-package com.saleka.application.admin;
+package com.saleka.application.configuration;
 
 import org.springframework.web.multipart.MultipartFile;
 

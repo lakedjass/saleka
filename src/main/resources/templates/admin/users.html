@@ -56,7 +56,7 @@
                                 <td th:text="${userInfo.getId()}">Trident</td>
                                 <td th:text="${userInfo.getFirstName()}">Trident</td>
                                 <td th:text="${userInfo.getEmail()}">X</td>
-                                <td class="imageListUser"><img th:src="'/media/images/'+ ${userInfo.getImage()}"  class="img-circle elevation-2" alt="User Image">
+                                <td class="imageListUser"><img th:src="${userInfo.getImage()} ? '/media/images/'+ ${userInfo.getImage()} : '/media/images/no-user-photo.jpeg'"  class="img-circle elevation-2" alt="User Image">
                                 </td>
                                 <td th:text="${userInfo.getRoles()[0]}">Win 95+</td>
                                 <td th:text="${userInfo.getLastName()}"> 4</td>

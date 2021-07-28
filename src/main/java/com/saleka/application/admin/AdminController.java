@@ -9,19 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "admin")
+@RequestMapping(path = "admin",method = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST})
 public class AdminController {
 
     @Autowired
@@ -38,27 +31,55 @@ public class AdminController {
     }
 
     @GetMapping("/listConfiguration")
-    public String getConfigurations(Model model){
+    public String getHomePageConfigurations(Model model){
 
-        List<ConfigurationSite> configurations = configurationService.getConfigurations();
+        List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
         UserPrincipal connectedUser = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         model.addAttribute("user", connectedUser);
-        model.addAttribute("configurations", configurations);
+        model.addAttribute("configurations", configurationAllSite);
         return "admin/configuration-list";
     }
 
-    //add new configuration for site
-    @PostMapping("/addConfiguration")
-    public String addConfiguration(ConfigurationSite configurationSite){
+    //edit configuration for site
+    @PostMapping(path = "/editSiteConfiguration")
+    public String editSiteConfiguration(Model model,@RequestParam(required = false) int page,
+                                        @RequestParam(required = false) String emailCorp, @RequestParam(required = false) String telCorp,
+                                        @RequestParam(required = false) String sloganCorp, @RequestParam(required = false) String herotitre,
+                                        @RequestParam(required = false) String heroSoustitre){
 
-        configurationService.saveConfigurationSite(configurationSite);
+        List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
+        ConfigurationSite configurationSiteA = configurationAllSite.get(0);
+
+            if (emailCorp != null){
+                configurationSiteA.setEmailCorp(emailCorp);
+            }
+            if (telCorp != null){
+                configurationSiteA.setTelCorp(telCorp);
+            }
+            if (sloganCorp != null){
+                configurationSiteA.setSloganCorp(sloganCorp);
+            }
+            if (herotitre != null){
+                configurationSiteA.setTitrePrincipal(herotitre);
+            }
+            if (heroSoustitre != null){
+                configurationSiteA.setSousTitrePrincipal(heroSoustitre);
+            }
+            if (page == 2){
+                model.addAttribute("page", "Paramétrage About page");
+                return "redirect:/admin/about-configuration";
+            }
+
+        configurationService.save(configurationSiteA);
 
         return "redirect:/admin/listConfiguration";
     }
 
     @GetMapping("/journaux")
-    public String getJournaux(){
-
+    public String getJournaux(Model model){
+        UserPrincipal connectedUser = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", connectedUser);
         return "admin/journauxModifHomePage";
     }
 
@@ -70,20 +91,8 @@ public class AdminController {
         model.addAttribute("usersList", usersList);
         return "admin/users";
     }
-    @PostMapping("/upload")
-    public String savePhoto(@RequestParam("image") MultipartFile multipartFile) throws IOException {
-        UserPrincipal connectedUser = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
-        User user = userRepository.findByEmail(connectedUser.getEmail());
-        user.setImage(fileName);
-        userRepository.saveAndFlush(user);
-        String uploadDir = "src/main/resources/static/media/images/";
 
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-
-        return "redirect:/admin/dashboard";
-    }
 }
 
 

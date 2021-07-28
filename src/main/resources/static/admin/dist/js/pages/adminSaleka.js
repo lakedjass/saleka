@@ -1,15 +1,72 @@
 (function() {
     const photo = document.querySelector("#userProfilePhoto")
-    if (photo){
-        photo.addEventListener('click', (event) => {
-            event.preventDefault()
-            let display = true
-            let dialog = document.querySelector("#userProfileBloc")
-           $(dialog).toggle();
+    let photoDialog = document.querySelector("#userProfileBloc")
+    handleShowDialogButton(photo, photoDialog)
+
+    const emailCorpEditButton = document.querySelector("#salekaTopbarEmail")
+    const EmailDialog = document.querySelector("#salekaTopbarEmailDiv")
+    handleShowDialogButton(emailCorpEditButton, EmailDialog)
+
+    const sloganCorpEditButton = document.querySelector("#salekaTopbarSlogan")
+    const sloganDialog = document.querySelector("#salekaTopbarSloganDiv")
+    handleShowDialogButton(sloganCorpEditButton, sloganDialog)
+
+    const telCorpEditButton = document.querySelector("#salekaTopbarTel")
+    const telDialog = document.querySelector("#salekaTopbarTelDiv")
+    handleShowDialogButton(telCorpEditButton, telDialog)
+
+    const heroTitreEditButton = document.querySelector("#salekaHeroTitre")
+    const heroTitreDialog = document.querySelector("#salekaHeroTitreDiv")
+    handleShowDialogButton(heroTitreEditButton, heroTitreDialog)
+
+    const heroSousTitreEditButton = document.querySelector("#salekaHeroSousTitre")
+    const heroSousTitreDialog = document.querySelector("#salekaHeroSousTitreDiv")
+    handleShowDialogButton(heroSousTitreEditButton, heroSousTitreDialog)
+
+})();
+
+function handleShowDialogButton(btnElement, dialogBox){
+    if (dialogBox){
+        let cancelButton = dialogBox.querySelector('.cancel')
+        if (btnElement){
+            btnElement.addEventListener('click', (event) => {
+                event.preventDefault()
+                $(dialogBox).toggle();
+            })}
+        if (cancelButton){
+            cancelButton.addEventListener('click', evt => {
+                evt.preventDefault()
+                console.log("j'ai cliqué sur annuler")
+                $(dialogBox).toggle();
+            })
+        }
+    }
+
+}
 
 
-        })}
-})()
+(function() {
+    const setImageAsDefaultButton = document.querySelector("#setBackgroundHome")
+    if (setImageAsDefaultButton){
+        setImageAsDefaultButton.addEventListener('click', evt => {
+            evt.preventDefault()
+            console.log('clique definir')
+        })
+    }
+
+})();
+
+(function() {
+    const backgroundBlock = document.querySelector("#hero")
+    const newImageHome = backgroundBlock.getAttribute(value)
+    console.log(newImageHome)
+    if (backgroundBlock){
+        backgroundBlock.style.background = `url('/media/images/'+ ${newImageHome}) center center`;
+    }
+
+})();
+
+
 
 $(document).on('change', '.file-input', function() {
 
@@ -24,8 +81,6 @@ $(document).on('change', '.file-input', function() {
     } else {
         textbox.text(filesCount + ' files selected');
     }
-
-
 
     if (typeof (FileReader) != "undefined") {
         var dvPreview = $("#divImageMediaPreview");
