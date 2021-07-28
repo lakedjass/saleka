@@ -1,6 +1,10 @@
 package com.saleka.application.blog.comment;
 
+import com.saleka.application.blog.category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +19,10 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
+    public Comment findById(Long id){
+        return commentRepository.findById(id).orElseThrow(() -> new IllegalStateException("No Comment Found For This ID"));
+    }
+
     public List<Comment> getComments(){
         List<Comment> posts = commentRepository.findAll();
         if(posts == null){
@@ -22,6 +30,15 @@ public class CommentService {
         }
         //return new ResponseEntity<>(commentRepository.findAll() , this.headers , HttpStatus.OK) ;
         return posts;
+    }
+
+    public Page<Comment> getComments(int page , int size){
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Page<Comment> comments = commentRepository.findAll(pageable);
+        if(comments == null){
+            throw new IllegalStateException("Error Found");
+        }
+        return comments;
     }
 
     public Comment newComment(Comment comment){

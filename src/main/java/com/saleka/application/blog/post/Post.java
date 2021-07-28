@@ -1,6 +1,7 @@
 package com.saleka.application.blog.post;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.saleka.application.blog.category.Category;
 import com.saleka.application.blog.comment.Comment;
 import com.saleka.application.blog.tag.Tag;
 import com.saleka.application.security.User;
@@ -8,6 +9,8 @@ import com.saleka.application.security.UserPrincipal;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,27 +24,41 @@ public class Post {
     @ManyToOne
     private User author;
 
-    @Column(nullable = false, columnDefinition = "TEXT", length = 1500)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "post_category",
+            joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id" , referencedColumnName = "id")
+    )
+    private Collection<Category> categories;
+
+    @Column(nullable = false, columnDefinition = "TEXT", length = 255)
     private String title;
 
-    @Column(columnDefinition = "TEXT", length = 25000)
+    @Column(columnDefinition = "TEXT", length = 500)
     private String body;
 
-    private LocalDate doc;
+    private Date doc;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER , cascade = CascadeType.ALL)
-    private List<Tag> tags;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "post_tag",
+            joinColumns = @JoinColumn(name = "post_id" , referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name= "tag_id" , referencedColumnName = "id")
+    )
+    private Collection<Tag> tags;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-
-    public Post() {
+    public Collection<Category> getCategories() {
+        return categories;
     }
 
-    public Post(String title) {
-        this.title = title;
-        this.body = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    public void setCategories(Collection<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Post() {
+        this.doc =  new Date();
     }
 
     public User getAuthor() {
@@ -64,7 +81,7 @@ public class Post {
         return body;
     }
 
-    public LocalDate getDoc() {
+    public Date getDoc() {
         return doc;
     }
 
@@ -80,15 +97,15 @@ public class Post {
         this.body = body;
     }
 
-    public void setDoc(LocalDate doc) {
+    public void setDoc(Date doc) {
         this.doc = doc;
     }
 
-    public List<Tag> getTags() {
+    public Collection<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags(Collection<Tag> tags) {
         this.tags = tags;
     }
 
@@ -104,6 +121,9 @@ public class Post {
         setBody(post.getBody());
         setDoc(post.getDoc());
         setTitle(post.getTitle());
+        setAuthor(post.getAuthor());
+        setCategories(post.getCategories());
+        setTags(post.getTags());
         if(withId){
             setId(post.getId());
         }

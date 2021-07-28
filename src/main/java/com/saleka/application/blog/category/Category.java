@@ -1,7 +1,5 @@
-package com.saleka.application.blog.tag;
+package com.saleka.application.blog.category;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.saleka.application.blog.comment.Comment;
 import com.saleka.application.blog.post.Post;
 
 import javax.persistence.*;
@@ -10,24 +8,17 @@ import java.util.List;
 
 @Entity
 @Table
-public class Tag {
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
-    private String key;
+    private String title;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "categories" , fetch = FetchType.EAGER)
     private Collection<Post> posts;
-
-    public Tag() {
-    }
-
-    public Tag(Long id, String key) {
-        this.id = id;
-        this.key = key;
-    }
 
     public Long getId() {
         return id;
@@ -37,12 +28,12 @@ public class Tag {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public String getTitle() {
+        return title;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Collection<Post> getPosts() {
@@ -53,10 +44,10 @@ public class Tag {
         this.posts = posts;
     }
 
-    public void setAllProperties(Tag tag , boolean withId){
-        setKey(tag.getKey());
+    public void setAllProperties(Category category , boolean withId){
+        setTitle(category.getTitle());
         if(withId){
-            setId(tag.getId());
+            setId(category.getId());
         }
     }
 }
