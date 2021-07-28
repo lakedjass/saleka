@@ -1,6 +1,8 @@
 package com.saleka.application.security;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.saleka.application.blog.comment.Comment;
+import com.saleka.application.blog.post.Post;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +12,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -37,6 +40,12 @@ public class User implements Serializable{
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+    @OneToMany(mappedBy = "author" , fetch = FetchType.EAGER)
+    private List<Post> postList;
+
+    @OneToMany(mappedBy = "author" , fetch = FetchType.EAGER)
+    private List<Comment> comments;
 
     public Integer getId() {
         return id;
@@ -68,6 +77,22 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public String getPassword() {
@@ -120,4 +145,8 @@ public class User implements Serializable{
         return "src/main/resources/static/media/images/" + image;
     }
 
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.saleka.application.blog.post.Post;
 import com.saleka.application.blog.tag.Tag;
+import com.saleka.application.security.User;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,12 +18,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    private String author;
+    @ManyToOne
+    private User author;
 
     @Column(nullable = false)
     private String body;
 
+    private Date doc;
 
     @ManyToOne
     private Comment comment;
@@ -32,11 +35,9 @@ public class Comment {
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tag> tags;
-
 
     public Comment() {
+        this.doc = new Date();
     }
 
     public Long getId() {
@@ -55,12 +56,27 @@ public class Comment {
         this.body = body;
     }
 
+    public Post getPost() {
+        return post;
+    }
 
-    public String getAuthor() {
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public Date getDoc() {
+        return doc;
+    }
+
+    public void setDoc(Date doc) {
+        this.doc = doc;
+    }
+
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
@@ -78,14 +94,6 @@ public class Comment {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
     }
 
     public void setAllProperties(Comment comment , boolean withId){
