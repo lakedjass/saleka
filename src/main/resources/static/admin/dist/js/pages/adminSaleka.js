@@ -3,13 +3,13 @@
     let photoDialog = document.querySelector("#userProfileBloc")
     handleShowDialogButton(photo, photoDialog)
 
-    const emailCorpEditButton = document.querySelector("#salekaTopbarEmail")
-    const EmailDialog = document.querySelector("#salekaTopbarEmailDiv")
-    handleShowDialogButton(emailCorpEditButton, EmailDialog)
+    const emailCorpEditButton = document.querySelector("#salekaTopBarEmail")
+    const emailCorpDialog = document.querySelector("#salekaTopbarEmailDiv")
+    handleShowDialogButton(emailCorpEditButton, emailCorpDialog)
 
     const sloganCorpEditButton = document.querySelector("#salekaTopbarSlogan")
-    const sloganDialog = document.querySelector("#salekaTopbarSloganDiv")
-    handleShowDialogButton(sloganCorpEditButton, sloganDialog)
+    const sloganCorpDialog = document.querySelector("#salekaTopbarSloganDiv")
+    handleShowDialogButton(sloganCorpEditButton, sloganCorpDialog)
 
     const telCorpEditButton = document.querySelector("#salekaTopbarTel")
     const telDialog = document.querySelector("#salekaTopbarTelDiv")
@@ -23,6 +23,34 @@
     const heroSousTitreDialog = document.querySelector("#salekaHeroSousTitreDiv")
     handleShowDialogButton(heroSousTitreEditButton, heroSousTitreDialog)
 
+    const bloc1WhyusTitreEditButton = document.querySelector("#salekaBloc1WhyusTitre")
+    const bloc1WhyusTitreDialog = document.querySelector("#salekaBloc1WhyusTitreDiv")
+    handleShowDialogButton(bloc1WhyusTitreEditButton,bloc1WhyusTitreDialog)
+
+    const bloc1WhyusSousTitreEditButton = document.querySelector("#salekaBloc1WhyusSousTitre")
+    const bloc1WhyusSousTitreDialog = document.querySelector("#salekaBloc1WhyusSousTitreDiv")
+    handleShowDialogButton(bloc1WhyusSousTitreEditButton,bloc1WhyusSousTitreDialog)
+
+
+    const salekaBloc2WhyusBoite1TitreEditButton = document.querySelector("#salekaBloc2WhyusBoite1Titre")
+    const salekaBloc2WhyusBoite1TitreDialog = document.querySelector("#salekaBloc2WhyusBoite1TitreDiv")
+    handleShowDialogButton(salekaBloc2WhyusBoite1TitreEditButton,salekaBloc2WhyusBoite1TitreDialog)
+    const salekaBloc2WhyusBoite1SousTitreEditButton = document.querySelector("#salekaBloc2WhyusBoite1SousTitre")
+    const salekaBloc2WhyusBoite1SousTitreDialog = document.querySelector("#salekaBloc2WhyusBoite1SousTitreDiv")
+    handleShowDialogButton(salekaBloc2WhyusBoite1SousTitreEditButton,salekaBloc2WhyusBoite1SousTitreDialog)
+    const salekaBloc2WhyusBoite2TitreEditButton = document.querySelector("#salekaBloc2WhyusBoite2Titre")
+    const salekaBloc2WhyusBoite2TitreDialog = document.querySelector("#salekaBloc2WhyusBoite2TitreDiv")
+    handleShowDialogButton(salekaBloc2WhyusBoite2TitreEditButton,salekaBloc2WhyusBoite2TitreDialog)
+    const salekaBloc2WhyusBoite2SousTitreEditButton = document.querySelector("#salekaBloc2WhyusBoite2SousTitre")
+    const salekaBloc2WhyusBoite2SousTitreDialog = document.querySelector("#salekaBloc2WhyusBoite2SousTitreDiv")
+    handleShowDialogButton(salekaBloc2WhyusBoite2SousTitreEditButton,salekaBloc2WhyusBoite2SousTitreDialog)
+    const salekaBloc2WhyusBoite3TitreEditButton = document.querySelector("#salekaBloc2WhyusBoite3Titre")
+    const salekaBloc2WhyusBoite3TitreDialog = document.querySelector("#salekaBloc2WhyusBoite3TitreDiv")
+    handleShowDialogButton(salekaBloc2WhyusBoite3TitreEditButton,salekaBloc2WhyusBoite3TitreDialog)
+    const salekaBloc2WhyusBoite3SousTitreEditButton = document.querySelector("#salekaBloc2WhyusBoite3SousTitre")
+    const salekaBloc2WhyusBoite3SousTitreDialog = document.querySelector("#salekaBloc2WhyusBoite3SousTitreDiv")
+    handleShowDialogButton(salekaBloc2WhyusBoite3SousTitreEditButton,salekaBloc2WhyusBoite3SousTitreDialog)
+
 })();
 
 function handleShowDialogButton(btnElement, dialogBox){
@@ -31,6 +59,7 @@ function handleShowDialogButton(btnElement, dialogBox){
         if (btnElement){
             btnElement.addEventListener('click', (event) => {
                 event.preventDefault()
+                console.log(btnElement,dialogBox)
                 $(dialogBox).toggle();
             })}
         if (cancelButton){
@@ -99,6 +128,4 @@ $(document).on('change', '.file-input', function() {
     } else {
         alert("This browser does not support HTML5 FileReader.");
     }
-
-
 });

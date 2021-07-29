@@ -43,10 +43,14 @@ public class AdminController {
 
     //edit configuration for site
     @PostMapping(path = "/editSiteConfiguration")
-    public String editSiteConfiguration(Model model,@RequestParam(required = false) int page,
+    public String editSiteConfiguration(Model model,
                                         @RequestParam(required = false) String emailCorp, @RequestParam(required = false) String telCorp,
-                                        @RequestParam(required = false) String sloganCorp, @RequestParam(required = false) String herotitre,
-                                        @RequestParam(required = false) String heroSoustitre){
+                                        @RequestParam(required = false) String sloganCorp, @RequestParam(required = false) String heroTitre,
+                                        @RequestParam(required = false) String heroSousTitre, @RequestParam(required = false) String bloc1WhyusTitre,
+                                        @RequestParam(required = false) String bloc1WhyusSousTitre, @RequestParam(required = false) String bloc2WhyusBoite1Titre,
+                                        @RequestParam(required = false) String bloc2WhyusBoite1SousTitre,@RequestParam(required = false) String bloc2WhyusBoite2Titre,
+                                        @RequestParam(required = false) String bloc2WhyusBoite2SousTitre,@RequestParam(required = false) String bloc2WhyusBoite3Titre,
+                                        @RequestParam(required = false) String bloc2WhyusBoite3SousTitre){
 
         List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
         ConfigurationSite configurationSiteA = configurationAllSite.get(0);
@@ -60,20 +64,42 @@ public class AdminController {
             if (sloganCorp != null){
                 configurationSiteA.setSloganCorp(sloganCorp);
             }
-            if (herotitre != null){
-                configurationSiteA.setTitrePrincipal(herotitre);
+            if (heroTitre != null){
+                configurationSiteA.setTitrePrincipal(heroTitre);
             }
-            if (heroSoustitre != null){
-                configurationSiteA.setSousTitrePrincipal(heroSoustitre);
+            if (heroSousTitre != null){
+                configurationSiteA.setSousTitrePrincipal(heroSousTitre);
             }
-            if (page == 2){
-                model.addAttribute("page", "Paramétrage About page");
-                return "redirect:/admin/about-configuration";
+            if(bloc1WhyusTitre != null){
+                configurationSiteA.setBloc1WhyusTitre(bloc1WhyusTitre);
             }
+            if(bloc1WhyusSousTitre != null){
+                configurationSiteA.setBloc1WhyusSousTitre(bloc1WhyusSousTitre);
+            }
+
+            if(bloc2WhyusBoite1Titre != null){
+                configurationSiteA.setBloc2WhyusBoite1Titre(bloc2WhyusBoite1Titre);
+            }
+            if(bloc2WhyusBoite1SousTitre != null){
+                configurationSiteA.setBloc2WhyusBoite1SousTitre(bloc2WhyusBoite1SousTitre);
+            }
+            if(bloc2WhyusBoite2Titre != null){
+                configurationSiteA.setBloc2WhyusBoite2Titre(bloc2WhyusBoite2Titre);
+            }
+            if(bloc2WhyusBoite2SousTitre != null){
+                configurationSiteA.setBloc2WhyusBoite2SousTitre(bloc2WhyusBoite2SousTitre);
+            }
+            if(bloc2WhyusBoite3Titre != null){
+                configurationSiteA.setBloc2WhyusBoite3Titre(bloc2WhyusBoite3Titre);
+            }
+            if(bloc2WhyusBoite3SousTitre != null){
+                configurationSiteA.setBloc2WhyusBoite3SousTitre(bloc2WhyusBoite3SousTitre);
+            }
+
 
         configurationService.save(configurationSiteA);
 
-        return "redirect:/admin/listConfiguration";
+        return "redirect:listConfiguration";
     }
 
     @GetMapping("/journaux")
