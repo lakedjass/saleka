@@ -34,8 +34,8 @@
     <!-- /.container-fluid -->
     <div class="container-fluid">
         <div class="card-footer clearfix">
-            <!--            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#newConfiguration"><i class="fas fa-plus"></i> Add Post</button>-->
-            <a type="button" th:href="@{/admin/addPost}" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add Comment</a>
+<!--            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#newConfiguration"><i class="fas fa-plus"></i> Add Comment</button>-->
+            <a type="button" th:href="@{/admin/addComment}" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add Comment</a>
 
         </div>
         <!-- /.row -->
@@ -66,10 +66,30 @@
                                 <td th:text="${ (#strings.length(comment.getBody()) > 25) ? #strings.substring(comment.getBody() , 0 , 25) + '...' : comment.getBody() }">Win 95+</td>
                                 <td th:datetime="${comment.getDoc()}" th:text="${comment.getDoc()}"> 4</td>
                                 <td>
-                                    <a type= "button" class="btn btn-primary" th:href="@{/admin/showPost(id = ${comment.getId()})}" th:alt-title="Show"> <i class="fa fa-eye"></i>  </a>
-                                    <a type= "button" class="btn btn-secondary" th:href="@{/admin/editPost(id = ${comment.getId()})}" th:alt-title="Edit"> <i class="fa fa-edit">  </i> </a>
-                                    <a type= "button" class="btn btn-danger" th:href="@{/admin/deletePost(id = ${comment.getId()})}" th:alt-title="Delete"> <i class="fa fa-trash">  </i> </a>
+                                    <a type= "button" class="btn btn-primary" href="#" th:alt-title="Show"> <i class="fa fa-eye"></i>  </a>
+                                    <a type= "button" class="btn btn-secondary" th:href="@{/admin/addComment(id = ${comment.getId()})}" th:alt-title="Edit"> <i class="fa fa-edit">  </i> </a>
+                                    <a type= "button" class="btn btn-danger" data-toggle="modal" data-target="#newConfiguration" th:attr="data-target='#newConfiguration'+${comment.getId()}+${comment.getId()}" th:alt-title="Delete"> <i class="fa fa-trash">  </i> </a>
                                 </td>
+                                <div layout:fragment="modal_post" class="modal fade" th:id="newConfiguration+${comment.getId()}+${comment.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Confirm Comment Delete</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you really want to delete this comment&hellip;?</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <a type="button" th:href="@{/admin/deleteComment(id = ${comment.getId()})}" class="btn btn-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                        <!--        &lt;!&ndash; /.modal-content -->
+                                    </div>
+                                </div>
                             </tr>
                             </tbody>
                         </table>
@@ -130,54 +150,62 @@
             </div>
         </div>
     </div>
+
+<!--    <div layout:fragment="modal_post" class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="exampleModalLabel1">New Comment</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                &lt;!&ndash; form start &ndash;&gt;-->
+<!--                <form th:action="@{/admin/addComment}" method="post">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="catid">Categories</label>-->
+<!--                            <select id="catid" class="selectpicker form-control" name="postId" title="Choose the post of your comment...">-->
+<!--                                <option th:each="post :${posts}" th:value="${post.getId()}" th:text="${ (#strings.length(post.getTitle()) > 15) ? #strings.substring(post.getTitle() , 0 , 25) + '...' : post.getTitle() }" value="1">One</option>-->
+<!--&lt;!&ndash;                                <option th:unless="${post == null}" th:each="category :${categories}" th:value="${category.getId()}" th:text="${category.getTitle()}" th:selected="${#lists.contains(post.getCategories(), category)}" value="1">One</option>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                        <option value="2">Two</option>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                        <option value="3">Three</option>&ndash;&gt;-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="exampleInputEmail1">Content</label>-->
+<!--                            <input class="form-control" id="exampleInputEmail1"  placeholder="Enter Comment Content " name="content">-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;<div class="form-group">-->
+<!--                            <label for="exampleInputFile">Charg</label>-->
+<!--                            <div class="input-group">-->
+<!--                                <div class="custom-file">-->
+<!--                                    <input type="file" class="custom-file-input" id="exampleInputFile">-->
+<!--                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>-->
+<!--                                </div>-->
+<!--                                <div class="input-group-append">-->
+<!--                                    <span class="input-group-text">Upload</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-check">-->
+<!--                            <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                            <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--                        </div>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; /.card-body &ndash;&gt;-->
+<!--                    <div class="modal-footer">-->
+<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>-->
+<!--                        <button type="submit" class="btn btn-primary">Envoyer</button>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
 </section>
 <!-- /.content -->
 
-<div layout:fragment="modal_post" class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">New Post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- form start -->
-            <form th:action="@{/admin/addPost}" method="post">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Title</label>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Post Title " name="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword2">Body</label>
-                        <textarea class="form-control" rows="4" id="exampleInputPassword2" placeholder="Enter Post Body" name="body"></textarea>
-                    </div>
-                    <!--<div class="form-group">
-                        <label for="exampleInputFile">Charg</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Upload</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>-->
-                </div>
-                <!-- /.card-body -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 </body>
 </html>
