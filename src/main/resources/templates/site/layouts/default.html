@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE ">SALEKA</title>
+        <title layout:title-pattern=" $LAYOUT_TITLE | $CONTENT_TITLE ">SALEKA</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
@@ -60,7 +60,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <h1><a href="index.html">Saleka IT</a></h1>
+                <h1><a th:href="@{/}">Saleka IT</a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -68,7 +68,7 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto " href="#hero" th:href="@{/}">Home</a></li>
-                    <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a th:href="@{/services}"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
                             <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -101,7 +101,7 @@
         <section layout:fragment="hero" id="breadcrumbs" class="breadcrumbs">
             <div class="container">
                 <ol>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a th:href="@{/}">Home</a></li>
                     <li>Inner Page</li>
                 </ol>
                 <h2>Inner Page</h2>
@@ -128,22 +128,23 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Flexor</h3>
+                        <h3>Saleka</h3>
+
                         <p>
-                            Monté Ludo <br>
-                            Mvog ada - Yaoundé<br>
-                            Cameroun <br><br>
-                            <strong>Phone:</strong> +237 985 656 331<br>
-                            <strong>Email:</strong> support@saleka.cm<br>
+                            <span>Monté Ludo </span><br>
+                            <span>Mvog ada - Yaoundé</span><br>
+                            <span>Cameroun</span> <br><br>
+                            <strong>Phone:</strong> <span th:text="${site[0].getTelCorp()}">+237 985 656 331</span><br>
+                            <strong>Email:</strong> <span th:text="${site[0].getEmailCorp()}">support@saleka.cm</span><br>
                         </p>
                     </div>
 
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a th:href="@{/about}">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a th:href="@{/services}">Services</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
@@ -162,7 +163,7 @@
 
                     <div class="col-lg-4 col-md-6 footer-newsletter">
                         <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <p th:text="${site[0].getNewsletterDescription()}">Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                         <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
                         </form>

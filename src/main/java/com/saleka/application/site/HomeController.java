@@ -15,6 +15,7 @@ public class HomeController {
     @Autowired
     private ConfigurationService configurationService;
 
+
     @GetMapping("/")
     public String home(Model model){
         List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
@@ -40,4 +41,5 @@ public class HomeController {
         model.addAttribute("site", configurationAllSite);
         return "site/about";
     }
+
 }
