@@ -51,7 +51,71 @@
     const salekaBloc2WhyusBoite3SousTitreDialog = document.querySelector("#salekaBloc2WhyusBoite3SousTitreDiv")
     handleShowDialogButton(salekaBloc2WhyusBoite3SousTitreEditButton,salekaBloc2WhyusBoite3SousTitreDialog)
 
+    const salekaBloc1AboutVideoEditButton = document.querySelector("#salekaBloc1AboutVideo")
+    const salekaBloc1AboutVideoDialog = document.querySelector("#salekaBloc1AboutVideoDiv")
+    handleShowDialogButton(salekaBloc1AboutVideoEditButton,salekaBloc1AboutVideoDialog)
+
+    const salekaBloc2AboutTitre1EditButton = document.querySelector("#salekaBloc2AboutTitre1")
+    const salekaBloc2AboutTitre1Dialog =document.querySelector("#salekaBloc2AboutTitre1Div")
+    handleShowDialogButton(salekaBloc2AboutTitre1EditButton,salekaBloc2AboutTitre1Dialog)
+
+    const salekaBloc2AboutTitre2EditButton = document.querySelector("#salekaBloc2AboutTitre2")
+    const salekaBloc2AboutTitre2Dialog = document.querySelector("#salekaBloc2AboutTitre2Div")
+    handleShowDialogButton(salekaBloc2AboutTitre2EditButton,salekaBloc2AboutTitre2Dialog)
+
+    const salekaBloc2AboutSousTitre2EditButton = document.querySelector("#salekaBloc2AboutSousTitre2")
+    const salekaBloc2AboutSousTitre2Dialog = document.querySelector("#salekaBloc2AboutSousTitre2Div")
+    handleShowDialogButton(salekaBloc2AboutSousTitre2EditButton,salekaBloc2AboutSousTitre2Dialog)
+
+    const salekaBloc3AboutTitre1EditButton = document.querySelector("#salekaBloc3AboutTitre1")
+    const  salekaBloc3AboutTitre1Dialog = document.querySelector("#salekaBloc3AboutTitre1Div")
+    handleShowDialogButton(salekaBloc3AboutTitre1EditButton,salekaBloc3AboutTitre1Dialog)
+
+    const salekaBloc3AboutTitre2EditButton = document.querySelector("#salekaBloc3AboutTitre2")
+    const  salekaBloc3AboutTitre2Dialog = document.querySelector("#salekaBloc3AboutTitre2Div")
+    handleShowDialogButton(salekaBloc3AboutTitre2EditButton,salekaBloc3AboutTitre2Dialog)
+
+    const salekaBloc3AboutTitre3EditButton = document.querySelector("#salekaBloc3AboutTitre3")
+    const  salekaBloc3AboutTitre3Dialog = document.querySelector("#salekaBloc3AboutTitre3Div")
+    handleShowDialogButton(salekaBloc3AboutTitre3EditButton,salekaBloc3AboutTitre3Dialog)
+
+    const salekaBloc3AboutSousTitre1EditButton = document.querySelector("#salekaBloc3AboutSousTitre1")
+    const  salekaBloc3AboutSousTitre1Dialog = document.querySelector("#salekaBloc3AboutSousTitre1Div")
+    handleShowDialogButton(salekaBloc3AboutSousTitre1EditButton,salekaBloc3AboutSousTitre1Dialog)
+
+    const salekaBloc3AboutSousTitre2EditButton = document.querySelector("#salekaBloc3AboutSousTitre2")
+    const  salekaBloc3AboutSousTitre2Dialog = document.querySelector("#salekaBloc3AboutSousTitre2Div")
+    handleShowDialogButton(salekaBloc3AboutSousTitre2EditButton,salekaBloc3AboutSousTitre2Dialog)
+
+    const salekaBloc3AboutSousTitre3EditButton = document.querySelector("#salekaBloc3AboutSousTitre3")
+    const  salekaBloc3AboutSousTitre3Dialog = document.querySelector("#salekaBloc3AboutSousTitre3Div")
+    handleShowDialogButton(salekaBloc3AboutSousTitre3EditButton,salekaBloc3AboutSousTitre3Dialog)
+
+    const salekatitreServiceEditButton = document.querySelector("#salekatitreService")
+    const salekatitreServiceDialog = document.querySelector("#salekatitreServiceDiv")
+    handleShowDialogButton(salekatitreServiceEditButton,salekatitreServiceDialog)
+
+    initshowDialog("salekadescriptionService")
+    initshowDialog("salekabloc1ServiceTitre1")
+    initshowDialog("salekabloc1ServiceSoustitre1")
+    initshowDialog("salekabloc1ServiceTitre2")
+    initshowDialog("salekabloc1ServiceSoustitre2")
+    initshowDialog("salekabloc1ServiceTitre3")
+    initshowDialog("salekabloc1ServiceSoustitre3")
+    initshowDialog("salekaourMissionTitre")
+    initshowDialog("salekaourMissionDescription")
+    initshowDialog("salekaourPlanTitre")
+    initshowDialog("salekaourPlanDescription")
+    initshowDialog("salekaadresse")
+    initshowDialog("salekacontactDescription")
+    initshowDialog("salekanewsletterDescription")
 })();
+
+function initshowDialog(value) {
+    const editbutton = document.querySelector("#"+value)
+    const  dialog = document.querySelector("#"+value+"Div")
+    handleShowDialogButton(editbutton,dialog)
+}
 
 function handleShowDialogButton(btnElement, dialogBox){
     if (dialogBox){

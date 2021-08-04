@@ -614,6 +614,947 @@
                 <!-- /.col-->
             </div>
             <!-- /.row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">About US</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>
+                                        Bloc 1 About Video
+                                    </td>
+                                    <td th:text="${configurations[0].getBloc1AboutVideo()}">
+                                        Bloc 1 About Video
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc1AboutVideo"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc1AboutVideoDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc1AboutVideo" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>
+                                        Bloc 2 About Titre 1
+                                    </td>
+                                    <td th:text="${configurations[0].getBloc2AboutTitre1()}">
+                                        Bloc 2 About Titre 1
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc2AboutTitre1"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc2AboutTitre1Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc2AboutTitre1" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>
+                                        Bloc 2 About Titre 2
+                                    </td>
+                                    <td th:text="${configurations[0].getBloc2AboutTitre2()}">
+                                        Bloc 2 About Titre 2
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc2AboutTitre2"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc2AboutTitre2Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc2AboutTitre2" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Bloc 2 About Sous Titre 2</td>
+                                    <td th:text="${configurations[0].getBloc2AboutSousTitre2()}">
+                                        Bloc 2 About Sous Titre 2
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc2AboutSousTitre2"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc2AboutSousTitre2Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc2AboutSousTitre2" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+            </div>
+            <!-- /.row-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Bloc3 Element1</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getBloc3AboutTitre1()}">
+                                        Titre Bloc 3 About Element 1
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc3AboutTitre1"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc3AboutTitre1Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="salekaBloc3AboutTitre1" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Sous Titre</td>
+                                    <td th:text="${configurations[0].getBloc3AboutSousTitre1()}">
+                                        Sous Titre Bloc3 Element 1
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc3AboutSousTitre1"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc3AboutSousTitre1Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="salekaBloc3AboutSousTitre1" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Bloc3 Element2</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getBloc3AboutTitre2()}">
+                                        Titre Bloc 3 About Element 2
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc3AboutTitre2"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc3AboutTitre2Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="salekaBloc3AboutTitre2" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Sous Titre</td>
+                                    <td th:text="${configurations[0].getBloc3AboutSousTitre2()}">
+                                        Sous Titre Bloc3 Element 2
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc3AboutSousTitre2"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc3AboutSousTitre2Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="salekaBloc3AboutSousTitre2" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Bloc3 Element3</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getBloc3AboutTitre3()}">
+                                        Titre Bloc 3 About Element 3
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc3AboutTitre3"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc3AboutTitre3Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="salekaBloc3AboutTitre3" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Sous Titre</td>
+                                    <td th:text="${configurations[0].getBloc3AboutSousTitre3()}">
+                                        Sous Titre Bloc3 Element 3
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaBloc3AboutSousTitre3"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaBloc3AboutSousTitre3Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="salekaBloc3AboutSousTitre3" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+            </div>
+            <!-- /.row-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Service Entete</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getTitreService()}">
+                                        Titre du Service
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekatitreService"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekatitreServiceDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="titreService" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Description du Service</td>
+                                    <td th:text="${configurations[0].getDescriptionService()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekadescriptionService"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekadescriptionServiceDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="descriptionService" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Service Bloc 1 Element 1</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getBloc1ServiceTitre1()}">
+                                        Titre du Service
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekabloc1ServiceTitre1"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekabloc1ServiceTitre1Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc1ServiceTitre1" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Sous Titre</td>
+                                    <td th:text="${configurations[0].getBloc1ServiceSoustitre1()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekabloc1ServiceSoustitre1"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekabloc1ServiceSoustitre1Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc1ServiceSoustitre1" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Service Bloc 1 Element 2</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getBloc1ServiceTitre2()}">
+                                        Titre du Service
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekabloc1ServiceTitre2"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekabloc1ServiceTitre2Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc1ServiceTitre2" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Sous Titre</td>
+                                    <td th:text="${configurations[0].getBloc1ServiceSoustitre2()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekabloc1ServiceSoustitre2"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekabloc1ServiceSoustitre2Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc1ServiceSoustitre2" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Service Bloc 1 Element 2</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getBloc1ServiceTitre3()}">
+                                        Titre du Service
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekabloc1ServiceTitre3"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekabloc1ServiceTitre3Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc1ServiceTitre3" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Sous Titre</td>
+                                    <td th:text="${configurations[0].getBloc1ServiceSoustitre3()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekabloc1ServiceSoustitre3"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekabloc1ServiceSoustitre3Div">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="bloc1ServiceSoustitre3" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+            </div>
+            <!-- /.row-->
+            <!-- La partie Mission -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Our Mission</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getOurMissionTitre()}">
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaourMissionTitre"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaourMissionTitreDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="ourMissionTitre" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Description</td>
+                                    <td th:text="${configurations[0].getOurMissionDescription()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaourMissionDescription"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaourMissionDescriptionDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="ourMissionDescription" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Our Plan</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Titre</td>
+                                    <td th:text="${configurations[0].getOurPlanTitre()}">
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaourPlanTitre"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaourPlanTitreDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="ourPlanTitre" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Description</td>
+                                    <td th:text="${configurations[0].getOurPlanDescription()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaourPlanDescription"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaourPlanDescriptionDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="ourPlanDescription" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Contacts</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Zone</th>
+                                    <th>Valeur</th>
+                                    <th style="width: 40px">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Adresse</td>
+                                    <td th:text="${configurations[0].getAdresse()}">
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekaadresse"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekaadresseDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="adresse" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Description</td>
+                                    <td th:text="${configurations[0].getContactDescription()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekacontactDescription"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekacontactDescriptionDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="contactDescription" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>Description NewsLetter</td>
+                                    <td th:text="${configurations[0].getNewsletterDescription()}">
+                                        Description
+                                    </td>
+                                    <td>
+                                        <a href="#" id="salekanewsletterDescription"><i class="nav-icon fas fa-edit"></i>edit</a>
+                                        <div class="popConteneur">
+                                            <div class="form-popup" id="salekanewsletterDescriptionDiv">
+                                                <form th:action="@{/admin/editSiteConfiguration}">
+                                                    <div class="form-group">
+                                                        <input type="text", name="newsletterDescription" placeholder="Entrer la nouvelle Valeur" required>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                    <div class="form-group">
+                                                        <button class="topbarButton" type="submit">Envoyer</button>
+                                                        <button class="topbarButton cancel"  type="button">Annuler</button>
+                                                    </div>
+                                                    <!-- /. form-group -->
+                                                </form>
+                                                <!-- /. form -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-->
+            </div>
+            <!-- /.row-->
         </div>
         <!-- /. container-fluid-->
     </section>

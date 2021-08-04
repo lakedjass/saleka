@@ -50,7 +50,20 @@ public class AdminController {
                                         @RequestParam(required = false) String bloc1WhyusSousTitre, @RequestParam(required = false) String bloc2WhyusBoite1Titre,
                                         @RequestParam(required = false) String bloc2WhyusBoite1SousTitre,@RequestParam(required = false) String bloc2WhyusBoite2Titre,
                                         @RequestParam(required = false) String bloc2WhyusBoite2SousTitre,@RequestParam(required = false) String bloc2WhyusBoite3Titre,
-                                        @RequestParam(required = false) String bloc2WhyusBoite3SousTitre){
+                                        @RequestParam(required = false) String bloc2WhyusBoite3SousTitre,@RequestParam(required = false) String bloc1AboutVideo,
+                                        @RequestParam(required = false) String bloc2AboutTitre1,@RequestParam(required = false) String bloc2AboutTitre2,
+                                        @RequestParam(required = false) String bloc2AboutSousTitre2,@RequestParam(required = false) String salekaBloc3AboutTitre1,
+                                        @RequestParam(required = false) String salekaBloc3AboutSousTitre1,@RequestParam(required = false) String salekaBloc3AboutTitre2,
+                                        @RequestParam(required = false) String salekaBloc3AboutSousTitre2,@RequestParam(required = false) String salekaBloc3AboutTitre3,
+                                        @RequestParam(required = false) String salekaBloc3AboutSousTitre3,@RequestParam(required = false) String titreService,
+                                        @RequestParam(required = false) String descriptionService,@RequestParam(required = false) String bloc1ServiceTitre1,
+                                        @RequestParam(required = false) String bloc1ServiceSoustitre1,@RequestParam(required = false) String bloc1ServiceTitre2,
+                                        @RequestParam(required = false) String bloc1ServiceSoustitre2,@RequestParam(required = false) String bloc1ServiceTitre3,
+                                        @RequestParam(required = false) String bloc1ServiceSoustitre3,@RequestParam(required = false) String ourMissionTitre,
+                                        @RequestParam(required = false) String ourMissionDescription,
+                                        @RequestParam(required = false) String ourPlanTitre, @RequestParam(required = false) String ourPlanDescription,
+                                        @RequestParam(required = false) String contactDescription, @RequestParam(required = false) String adresse,
+                                        @RequestParam(required = false) String newsletterDescription){
 
         List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
         ConfigurationSite configurationSiteA = configurationAllSite.get(0);
@@ -95,12 +108,89 @@ public class AdminController {
             if(bloc2WhyusBoite3SousTitre != null){
                 configurationSiteA.setBloc2WhyusBoite3SousTitre(bloc2WhyusBoite3SousTitre);
             }
+            if(bloc1AboutVideo != null){
+                configurationSiteA.setBloc1AboutVideo(bloc1AboutVideo);
+            }
+            if(bloc2AboutTitre1 != null){
+                configurationSiteA.setBloc2AboutTitre1(bloc2AboutTitre1);
+            }
+            if(bloc2AboutTitre2 != null){
+                configurationSiteA.setBloc2AboutTitre2(bloc2AboutTitre2);
+            }
+            if(bloc2AboutSousTitre2 != null){
+                configurationSiteA.setBloc2AboutSousTitre2(bloc2AboutSousTitre2);
+            }
 
+            if(salekaBloc3AboutTitre1 != null){
+                configurationSiteA.setBloc3AboutTitre1(salekaBloc3AboutTitre1);
+            }
+            if(salekaBloc3AboutSousTitre1 != null){
+                configurationSiteA.setBloc3AboutSousTitre1(salekaBloc3AboutSousTitre1);
+            }
+            if(salekaBloc3AboutTitre2 != null){
+                configurationSiteA.setBloc3AboutTitre2(salekaBloc3AboutTitre2);
+            }
+            if(salekaBloc3AboutSousTitre2 != null){
+                configurationSiteA.setBloc3AboutSousTitre2(salekaBloc3AboutSousTitre2);
+            }
+            if(salekaBloc3AboutTitre3 != null){
+                configurationSiteA.setBloc3AboutTitre3(salekaBloc3AboutTitre3);
+            }
+            if(salekaBloc3AboutSousTitre3 != null){
+                configurationSiteA.setBloc3AboutSousTitre3(salekaBloc3AboutSousTitre3);
+            }
 
+            if(titreService != null){
+                configurationSiteA.setTitreService(titreService);
+            }
+            if(descriptionService != null){
+                configurationSiteA.setDescriptionService(descriptionService);
+            }
+            if(bloc1ServiceTitre1!=null){
+                configurationSiteA.setBloc1ServiceTitre1(bloc1ServiceTitre1);
+            }
+            if(bloc1ServiceSoustitre1 != null){
+                configurationSiteA.setBloc1ServiceSoustitre1(bloc1ServiceSoustitre1);
+            }
+            if(bloc1ServiceTitre2!=null){
+                configurationSiteA.setBloc1ServiceTitre2(bloc1ServiceTitre2);
+            }
+            if(bloc1ServiceSoustitre2 != null){
+                configurationSiteA.setBloc1ServiceSoustitre2(bloc1ServiceSoustitre2);
+            }
+            if(bloc1ServiceTitre3!=null){
+                configurationSiteA.setBloc1ServiceTitre3(bloc1ServiceTitre3);
+            }
+            if(bloc1ServiceSoustitre3 != null){
+                configurationSiteA.setBloc1ServiceSoustitre3(bloc1ServiceSoustitre3);
+            }
+            if(ourMissionTitre != null){
+                configurationSiteA.setOurMissionTitre(ourMissionTitre);
+            }
+            if(ourMissionDescription != null){
+                configurationSiteA.setOurMissionDescription(ourMissionDescription);
+            }
+
+            if(ourPlanTitre != null){
+                configurationSiteA.setOurPlanTitre(ourPlanTitre);
+            }
+            if(ourPlanDescription != null){
+                configurationSiteA.setOurPlanDescription(ourPlanDescription);
+            }
+            if(adresse != null){
+                configurationSiteA.setAdresse(adresse);
+            }
+            if(contactDescription != null){
+                configurationSiteA.setContactDescription(contactDescription);
+            }
+            if(newsletterDescription != null){
+                configurationSiteA.setNewsletterDescription(newsletterDescription);
+            }
         configurationService.save(configurationSiteA);
 
         return "redirect:listConfiguration";
     }
+
 
     @GetMapping("/journaux")
     public String getJournaux(Model model){
