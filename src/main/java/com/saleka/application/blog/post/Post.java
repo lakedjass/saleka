@@ -8,6 +8,8 @@ import com.saleka.application.security.User;
 import com.saleka.application.security.UserPrincipal;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
@@ -32,9 +34,11 @@ public class Post {
     private Collection<Category> categories;
 
     @Column(nullable = false, columnDefinition = "TEXT", length = 255)
+    @NotBlank
     private String title;
 
     @Column(columnDefinition = "TEXT", length = 500)
+    @NotBlank
     private String body;
 
     private Date doc;

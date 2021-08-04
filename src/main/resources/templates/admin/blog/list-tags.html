@@ -34,8 +34,8 @@
     <!-- /.container-fluid -->
     <div class="container-fluid">
         <div class="card-footer clearfix">
-            <!--            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#newConfiguration"><i class="fas fa-plus"></i> Add Post</button>-->
-            <a type="button" th:href="@{/admin/addPost}" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add Tag</a>
+            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#newConfiguration"><i class="fas fa-plus"></i> Add Tag</button>
+<!--            <a type="button" th:href="@{/admin/addPost}" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add Tag</a>-->
 
         </div>
         <!-- /.row -->
@@ -67,9 +67,73 @@
 <!--                                <td th:datetime="${comment.getDoc()}" th:text="${comment.getDoc()}"> 4</td>-->
                                 <td>
                                     <a type= "button" class="btn btn-primary" th:href="@{/admin/showPost(id = ${tag.getId()})}" th:alt-title="Show"> <i class="fa fa-eye"></i>  </a>
-                                    <a type= "button" class="btn btn-secondary" th:href="@{/admin/editPost(id = ${tag.getId()})}" th:alt-title="Edit"> <i class="fa fa-edit">  </i> </a>
-                                    <a type= "button" class="btn btn-danger" th:href="@{/admin/deletePost(id = ${tag.getId()})}" th:alt-title="Delete"> <i class="fa fa-trash">  </i> </a>
+                                    <a type= "button" class="btn btn-secondary" data-toggle="modal" data-target="#newConfiguration" th:attr="data-target='#newConfiguration'+${tag.getId()}" th:alt-title="Edit"> <i class="fa fa-edit">  </i> </a>
+                                    <a type= "button" class="btn btn-danger" data-toggle="modal" data-target="#newConfiguration" th:attr="data-target='#newConfiguration'+${tag.getId()}+${tag.getId()}" th:alt-title="Delete"> <i class="fa fa-trash">  </i> </a>
                                 </td>
+                                <div layout:fragment="modal_post" class="modal fade" th:id="newConfiguration+${tag.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel2">New Tag</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <!-- form start -->
+                                            <form th:action="@{/admin/addTag}" method="post">
+                                                <div class="card-body">
+                                                    <input type="hidden" th:value="${tag.getId()}" name="tagId">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail2">Key</label>
+                                                        <input class="form-control" th:value="${tag.getKey()}" id="exampleInputEmail2" placeholder="Enter the Tag Key " name="key">
+                                                    </div>
+                                                    <!--<div class="form-group">
+                                                        <label for="exampleInputFile">Charg</label>
+                                                        <div class="input-group">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                            </div>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">Upload</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                                    </div>-->
+                                                </div>
+
+                                                <!-- /.card-body -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div layout:fragment="modal_post" class="modal fade" th:id="newConfiguration+${tag.getId()}+${tag.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Confirm Tag Delete</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you really want to delete this tag&hellip;?</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <a type="button" th:href="@{/admin/deleteTag(id = ${tag.getId()})}" class="btn btn-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                        <!--        &lt;!&ndash; /.modal-content -->
+                                    </div>
+                                </div>
                             </tr>
                             </tbody>
                         </table>
@@ -130,54 +194,50 @@
             </div>
         </div>
     </div>
+    <div layout:fragment="modal_post" class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">New Tag</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- form start -->
+                <form th:action="@{/admin/addTag}" method="post">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Key</label>
+                            <input class="form-control" id="exampleInputEmail1" placeholder="Enter the Tag Key " name="key">
+                        </div>
+                        <!--<div class="form-group">
+                            <label for="exampleInputFile">Charg</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>-->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- /.content -->
 
-<div layout:fragment="modal_post" class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">New Post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- form start -->
-            <form th:action="@{/admin/addPost}" method="post">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Title</label>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Post Title " name="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword2">Body</label>
-                        <textarea class="form-control" rows="4" id="exampleInputPassword2" placeholder="Enter Post Body" name="body"></textarea>
-                    </div>
-                    <!--<div class="form-group">
-                        <label for="exampleInputFile">Charg</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Upload</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>-->
-                </div>
-                <!-- /.card-body -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 </body>
 </html>

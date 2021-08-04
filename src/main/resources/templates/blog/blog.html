@@ -150,9 +150,10 @@
 
                         <div class="blog-pagination" th:if="${totalPages > 1}">
                             <ul class="justify-content-center">
+                                <li th:if="${currentPage > 1}"> <a th:href="@{/blog(page = ${currentPage - 1})}"> Previous </a> </li>
                                 <li th:each="i: ${#numbers.sequence(1, totalPages)}"><a th:href="@{/blog(page = ${i})}" th:text="${i}">1</a></li>
-                                <li> <a th:href="@{/blog(page = ${currentPage + 1})}"> Next </a> </li>
-                                <li> <a th:href="@{/blog(page = ${totalPages})}"> last </a> </li>
+                                <li th:if="${currentPage < totalPages}"> <a th:href="@{/blog(page = ${currentPage + 1})}"> Next </a> </li>
+                                <li th:if="${currentPage != totalPages}"> <a th:href="@{/blog(page = ${totalPages})}"> last </a> </li>
                             </ul>
                         </div>
 

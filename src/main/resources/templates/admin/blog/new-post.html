@@ -22,7 +22,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Posts</a></li>
                     <li th:if="${post == null}" class="breadcrumb-item active">New</li>
-                    <li th:unless="${post == null}" class="breadcrumb-item active">New</li>
+                    <li th:unless="${post == null}" class="breadcrumb-item active">Edit</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -31,7 +31,7 @@
 <!-- /.content-header -->
 
 <section layout:fragment="content" class="content">
-    <form th:action="@{/admin/addPost}" th:object="${post}" method="post">
+    <form th:action="@{/admin/addPost}" th:object="${postForm}" method="post">
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
@@ -83,7 +83,8 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button th:if="${post == null}" type="submit" class="btn btn-primary">Save</button>
+                                <button th:unless="${post == null}" type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>
