@@ -34,7 +34,9 @@
     <!-- /.container-fluid -->
     <div class="container-fluid">
         <div class="card-footer clearfix">
-            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#newConfiguration"><i class="fas fa-plus"></i> Add Post</button>
+<!--            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#modal-sm"><i class="fas fa-plus"></i> Add Post</button>-->
+            <a type="button" th:href="@{/admin/addPost}" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add Post</a>
+
         </div>
         <!-- /.row -->
         <div class="row">
@@ -42,105 +44,161 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">All Posts</h3>
-
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Author</th>
                                 <th>Title</th>
-                                <th>Body</th>
-                                <th>Date Of Creation</th>
+                                <th>Date of Creation</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="post:${posts}">
-                                <td th:text="${post.getId()}">183</td>
-                                <td th:text="${post.getAuthor()}">John Doe</td>
-                                <td th:text="${post.getTitle()}">Title1</td>
-                                <td th:text="${post.getBody()}">Body1</td>
-                                <td th:datetime="${post.getDoc()}">21-11-2020</td>
-                                <td>
-                                    <a type= "button" class="btn btn-primary" th:href="@{/admin/showPost/{id}(id = ${post.getId()})}" th:alt-title="Show"> <i class="fa fa-eye"></i>  </a>
-                                    <a type= "button" class="btn btn-secondary" th:href="@{/admin/editPost/{id}(id = ${post.getId()})}" th:alt-title="Edit"> <i class="fa fa-edit">  </i> </a>
-                                    <a type= "button" class="btn btn-danger" th:href="@{/admin/deletePost/{id}(id = ${post.getId()})}" th:alt-title="Delete"> <i class="fa fa-trash">  </i> </a>
+                                <td th:text="${post.getId()}">Trident</td>
+                                <td th:text="${post.getAuthor()}">Internet
+                                    Explorer 4.0
                                 </td>
+                                <td th:text="${ (#strings.length(post.getTitle()) > 25) ? #strings.substring(post.getTitle() , 0 , 25) + '...' : post.getTitle() }">Win 95+</td>
+                                <td th:datetime="${post.getDoc()}" th:text="${post.getDoc()}"> 4</td>
+                                <td>
+                                    <a type= "button" class="btn btn-primary" th:href="@{/admin/showPost(id = ${post.getId()})}" th:alt-title="Show"> <i class="fa fa-eye"></i>  </a>
+                                    <a type= "button" class="btn btn-secondary" th:href="@{/admin/addPost(id = ${post.getId()})}" th:alt-title="Edit"> <i class="fa fa-edit">  </i> </a>
+                                    <a type= "button" class="btn btn-danger" data-toggle="modal" data-target="#modal-sm" th:attr="data-target='#modal-sm'+${post.getId()}" th:alt-title="Delete"> <i class="fa fa-trash">  </i> </a>
+                                </td>
+                                <div layout:fragment="modal_post" class="modal fade"  th:id="modal-sm+${post.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Confirm Post Delete</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you really want to delete this post&hellip;?</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <a type="button" th:href="@{/admin/deletePost(id = ${post.getId()})}" class="btn btn-primary">Save changes</a>
+                                            </div>
+                                        </div>
+                                        <!--        &lt;!&ndash; /.modal-content -->
+                                    </div>
+                                </div>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
+<!--                <div class="row">-->
+<!--                    <div class="text-center">-->
+<!--                        <ul class="pagination pagination-large">-->
+<!--                            <li class="disabled"><span>«</span></li>-->
+<!--                            <li class="active"><span>1</span></li>-->
+<!--                            <li><a href="https://bootsnipp.com/tags/lists?page=2">2</a></li>-->
+<!--                            <li><a href="https://bootsnipp.com/tags/lists?page=3">3</a></li>-->
+<!--                            <li><a href="https://bootsnipp.com/tags/lists?page=2" rel="next">»</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <nav aria-label="Page navigation example" th:if="${totalPages > 1}">
+                    <ul class="pagination">
+                        <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/admin/posts(page = ${currentPage - 1})}" href="#">Previous</a></li>
+                        <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}" ><a class="page-link" th:href="@{/admin/posts(page = ${i})}" th:text="${i}" href="#">1</a></li>
+                        <li th:if="${currentPage < totalPages}" class="page-item"><a class="page-link" th:href="@{/admin/posts(page = ${currentPage + 1})}" href="#">Next</a></li>
+                    </ul>
+                </nav>
+                                <!-- /.card-header -->
+<!--                    <div class="card-body table-responsive p-0">-->
+<!--                        <table class="table table-hover text-nowrap">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>ID</th>-->
+<!--                                <th>Author</th>-->
+<!--                                <th>Title</th>-->
+<!--&lt;!&ndash;                                <th>Body</th>&ndash;&gt;-->
+<!--                                <th>Date Of Creation</th>-->
+<!--                                <th>Actions</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="post:${posts}">-->
+<!--                                <td th:text="${post.getId()}">183</td>-->
+<!--                                <td th:text="${post.getAuthor()}">John Doe</td>-->
+<!--                                <td th:text="${ (#strings.length(post.getTitle()) >= 25) ? #strings.substring(post.getTitle() , 0 , 25) + '...' : post.getTitle() }">Title1</td>-->
+<!--&lt;!&ndash;                                <td th:text="${post.getBody()}">Body1</td>&ndash;&gt;-->
+<!--                                <td th:datetime="${post.getDoc()}">21-11-2020</td>-->
+<!--                                <td>-->
+<!--                                    <a type= "button" class="btn btn-primary" th:href="@{/admin/showPost(id = ${post.getId()})}" th:alt-title="Show"> <i class="fa fa-eye"></i>  </a>-->
+<!--                                    <a type= "button" class="btn btn-secondary" th:href="@{/admin/editPost(id = ${post.getId()})}" th:alt-title="Edit"> <i class="fa fa-edit">  </i> </a>-->
+<!--                                    <a type= "button" class="btn btn-danger" th:href="@{/admin/deletePost(id = ${post.getId()})}" th:alt-title="Delete"> <i class="fa fa-trash">  </i> </a>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+
+<!--                    </div>-->
+<!--                    &lt;!&ndash; /.card-body &ndash;&gt;-->
+<!--                </div>-->
                 <!-- /.card -->
+
             </div>
         </div>
     </div>
 </section>
 <!-- /.content -->
 
-<div layout:fragment="modal_post" class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">New Post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- form start -->
-                <form th:action="@{/admin/addPost}" method="post">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Title</label>
-                            <input class="form-control" id="exampleInputEmail1" placeholder="Enter Post Title " name="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword2">Body</label>
-                            <textarea class="form-control" rows="4" id="exampleInputPassword2" placeholder="Enter Post Body" name="body"></textarea>
-                        </div>
-                        <!--<div class="form-group">
-                            <label for="exampleInputFile">Charg</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>-->
-                    </div>
-                    <!-- /.card-body -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-primary">Envoyer</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
 
+<!--<div layout:fragment="modal_post" class="modal fade" id="newConfiguration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel1">New Post</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; form start &ndash;&gt;-->
+<!--            <form th:action="@{/admin/addPost}" method="post">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="exampleInputEmail1">Title</label>-->
+<!--                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Post Title " name="title">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="exampleInputPassword2">Body</label>-->
+<!--                        <textarea class="form-control" rows="4" id="exampleInputPassword2" placeholder="Enter Post Body" name="body"></textarea>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;<div class="form-group">-->
+<!--                        <label for="exampleInputFile">Charg</label>-->
+<!--                        <div class="input-group">-->
+<!--                            <div class="custom-file">-->
+<!--                                <input type="file" class="custom-file-input" id="exampleInputFile">-->
+<!--                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>-->
+<!--                            </div>-->
+<!--                            <div class="input-group-append">-->
+<!--                                <span class="input-group-text">Upload</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-check">-->
+<!--                        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--                    </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash; /.card-body &ndash;&gt;-->
+<!--                <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>-->
+<!--                <button type="submit" class="btn btn-primary">Envoyer</button>-->
+<!--            </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 </body>
 </html>

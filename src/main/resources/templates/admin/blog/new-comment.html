@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin/layouts/default">
+<head>
+    <title>Comments</title>
+</head>
+
+<body>
+
+<!-- Content Header (Page header) -->
+<div layout:fragment="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 th:if="${comment == null}" class="m-0">New Comment</h1>
+                <h1 th:unless="${comment == null}" class="m-0">Edit Comment</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Comments</a></li>
+                    <li th:if="${comment == null}" class="breadcrumb-item active">New</li>
+                    <li th:unless="${comment == null}" class="breadcrumb-item active">Edit</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section layout:fragment="content" class="content">
+    <form th:action="@{/admin/addComment}" method="post">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- jquery validation -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title"> <small></small></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form id="quickForm">
+                            <div class="card-body">
+                                <input th:unless="${comment== null}" name="commentId" th:value="${comment.getId()}" type="hidden">
+                                <div class="form-group">
+                                    <label for="catid">Posts</label>
+                                    <select id="catid" class="selectpicker form-control" name="postId" data-selected-text-format="count > 3" title="Choose the post you to add a comment...">
+                                        <option th:if="${comment == null}" th:each="post :${posts}" th:value="${post.getId()}" th:text="${post.getTitle()}" value="1">One</option>
+                                        <option th:unless="${comment == null}" th:each="post :${posts}" th:value="${post.getId()}" th:text="${post.getTitle()}" th:selected="${comment.getPost() == post}" value="1">One</option>
+                                        <!--                                        <option value="2">Two</option>-->
+                                        <!--                                        <option value="3">Three</option>-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">Content</label>
+                                    <textarea th:if="${comment == null}" id="content" name="body" rows="6" class="form-control" placeholder="Enter the content"></textarea>
+                                    <textarea th:unless="${comment == null}" id="content" th:utext="${comment.getBody()}" name="body" rows="6" class="form-control" placeholder="Enter the content"></textarea>
+                                </div>
+                                <!--                                <div class="form-group mb-0">-->
+                                <!--                                    <div class="custom-control custom-checkbox">-->
+                                <!--                                        <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">-->
+                                <!--                                        <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button th:if="${comment == null}" type="submit" class="btn btn-primary">Save</button>
+                                <button th:unless="${comment == null}" type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+                <!-- right column -->
+                <div class="col-md-6">
+
+                </div>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+
+    </form>
+</section>
+<!-- /.content -->
+
+</body>
+</html>

@@ -1,7 +1,11 @@
 package com.saleka.application.blog.tag;
 
+import com.saleka.application.blog.category.Category;
 import com.saleka.application.blog.tag.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +28,26 @@ public class TagService {
         return tags;
     }
 
+    public Page<Tag> getTags(int page , int size){
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Page<Tag> tags = tagRepository.findAll(pageable);
+        if(tags == null){
+            throw new IllegalStateException("Error Found");
+        }
+        return tags;
+    }
+
     public Tag newTag(Tag tag){
         if(tag == null){
             throw new IllegalStateException("Tag Not Found");
         }
         tagRepository.saveAndFlush(tag);
         return tag;
+    }
+
+
+    public Tag findById(Long id){
+        return tagRepository.findById(id).orElseThrow(() -> new IllegalStateException("No Tag Found"));
     }
 
     public void deleteTag(Long id){
@@ -39,6 +57,7 @@ public class TagService {
         }
         tagRepository.deleteById(id);
     }
+
 
     @Transactional
     public void updateTag(Long id, Tag tag){

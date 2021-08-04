@@ -15,12 +15,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">New Post</h1>
+                <h1 th:if="${post == null}" class="m-0">New Post</h1>
+                <h1 th:unless="${post == null}" class="m-0">Edit Post</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Posts</a></li>
-                    <li class="breadcrumb-item active">New</li>
+                    <li th:if="${post == null}" class="breadcrumb-item active">New</li>
+                    <li th:unless="${post == null}" class="breadcrumb-item active">Edit</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,86 +31,75 @@
 <!-- /.content-header -->
 
 <section layout:fragment="content" class="content">
-    <form th:action="@{/admin/addPost}" method="post">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">General</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
+    <form th:action="@{/admin/addPost}" th:object="${postForm}" method="post">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- jquery validation -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title"> <small></small></h3>
                         </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form id="quickForm">
+                            <div class="card-body">
+                                <input th:unless="${post== null}" name="postId" th:value="${post.getId()}" type="hidden">
+                                <div class="form-group">
+                                    <label for="catid">Categories</label>
+                                    <select multiple id="catid" class="selectpicker form-control" name="categoryIdList" data-selected-text-format="count > 3" title="Choose all the categories of your post...">
+                                        <option th:if="${post == null}" th:each="category :${categories}" th:value="${category.getId()}" th:text="${category.getTitle()}" value="1">One</option>
+                                        <option th:unless="${post == null}" th:each="category :${categories}" th:value="${category.getId()}" th:text="${category.getTitle()}" th:selected="${#lists.contains(post.getCategories(), category)}" value="1">One</option>
+<!--                                        <option value="2">Two</option>-->
+<!--                                        <option value="3">Three</option>-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input th:if="${post == null}" type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter the title of the post">
+                                    <input th:unless="${post == null}" type="text" th:value="${post.getTitle()}" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter the title of the post">
+                                </div>
+                                <div class="form-group">
+                                    <label for="summernote">Content</label>
+                                    <textarea th:if="${post == null}" id="summernote" name="body" rows="6" class="form-control" placeholder="Enter the content"></textarea>
+                                    <textarea th:unless="${post == null}" id="summernote" th:utext="${post.getBody()}" name="body" rows="6" class="form-control" placeholder="Enter the content"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tagid">Tags</label>
+                                    <select multiple id="tagid" class="selectpicker form-control" name="tagIdList" data-selected-text-format="count > 3" title="Choose all the tags of your post...">
+                                        <option th:if="${post == null}" th:each="tag :${tags}" th:value="${tag.getId()}" th:text="${tag.getKey()}" value="1">One</option>
+                                        <option th:unless="${post == null}" th:each="tag :${tags}" th:value="${tag.getId()}" th:text="${tag.getKey()}" th:selected="${#lists.contains(post.getTags() , tag)}" value="1">One</option>
+                                        <!--                                        <option value="2">Two</option>-->
+                                        <!--                                        <option value="3">Three</option>-->
+                                    </select>
+                                </div>
+<!--                                <div class="form-group mb-0">-->
+<!--                                    <div class="custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">-->
+<!--                                        <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button th:if="${post == null}" type="submit" class="btn btn-primary">Save</button>
+                                <button th:unless="${post == null}" type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputTitle">Title</label>
-                            <input type="text" id="inputTitle" class="form-control" name="title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputContent">Content</label>
-                            <textarea id="inputContent" class="form-control" rows="4" name="body" required></textarea>
-                        </div>
-                        <!--<div class="form-group">
-                            <label for="inputStatus">Status</label>
-                            <select id="inputStatus" class="form-control custom-select">
-                                <option selected disabled>Select one</option>
-                                <option>On Hold</option>
-                                <option>Canceled</option>
-                                <option>Success</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputClientCompany">Client Company</label>
-                            <input type="text" id="inputClientCompany" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputProjectLeader">Project Leader</label>
-                            <input type="text" id="inputProjectLeader" class="form-control">
-                        </div>-->
-                    </div>
-                    <!-- /.card-body -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
-            </div>
-            <!--<div class="col-md-6">
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Budget</h3>
+                <!--/.col (left) -->
+                <!-- right column -->
+                <div class="col-md-6">
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputEstimatedBudget">Estimated budget</label>
-                            <input type="number" id="inputEstimatedBudget" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputSpentBudget">Total amount spent</label>
-                            <input type="number" id="inputSpentBudget" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEstimatedDuration">Estimated project duration</label>
-                            <input type="number" id="inputEstimatedDuration" class="form-control">
-                        </div>
-                    </div>
-                    &lt;!&ndash; /.card-body &ndash;&gt;
                 </div>
-                &lt;!&ndash; /.card &ndash;&gt;
-            </div>-->
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Create new Post" class="btn btn-success float-right">
+                <!--/.col (right) -->
             </div>
-        </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+
     </form>
 </section>
 <!-- /.content -->

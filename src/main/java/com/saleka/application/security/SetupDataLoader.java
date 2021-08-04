@@ -1,9 +1,18 @@
 package com.saleka.application.security;
 
+import com.saleka.application.blog.category.Category;
+import com.saleka.application.blog.category.CategoryRepository;
+import com.saleka.application.blog.comment.Comment;
+import com.saleka.application.blog.comment.CommentRepository;
+import com.saleka.application.blog.post.Post;
+import com.saleka.application.blog.post.PostRepository;
+import com.saleka.application.blog.tag.Tag;
+import com.saleka.application.blog.tag.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -31,6 +40,18 @@ public class SetupDataLoader implements
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     @Transactional
@@ -86,6 +107,7 @@ public class SetupDataLoader implements
         listUsers.add(user1);
         listUsers.add(user2);
         listUsers.add(user3);
+
 
         userRepository.saveAll(listUsers);
 
