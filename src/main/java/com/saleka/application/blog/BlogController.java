@@ -1,6 +1,5 @@
 package com.saleka.application.blog;
 
-import com.saleka.application.admin.AdminController;
 import com.saleka.application.blog.category.Category;
 import com.saleka.application.blog.category.CategoryService;
 import com.saleka.application.blog.comment.Comment;
@@ -14,7 +13,6 @@ import com.saleka.application.configuration.ConfigurationSite;
 import com.saleka.application.security.User;
 import com.saleka.application.security.UserPrincipal;
 import com.saleka.application.security.UserService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -284,5 +282,4 @@ public class BlogController implements WebMvcConfigurer {
         commentService.deleteComment(id);
         return "redirect:tags";
     }
-
 }
