@@ -1520,7 +1520,7 @@ section {
   padding: 15px;
   font-weight: 600;
 }
- .newsLetter .error-message {
+.newsLetter .error-message {
   display: none;
   color: #fff;
   background: #ed3c0d;
@@ -1528,11 +1528,21 @@ section {
   padding: 5px;
   font-weight: 600;
 }
-
 .contact .php-email-form .error-message br + br {
   margin-top: 25px;
 }
- .newsLetter .error-message br {
+.newsLetter i{
+  position: absolute;
+  top: 40px;
+  right: 10px;
+}
+.newsLetter small{
+  visibility: visible;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.newsLetter .error-message br {
   margin-top: 7px;
 }
 
@@ -1583,13 +1593,12 @@ section {
   border-radius: 50%;
   width: 24px;
   height: 24px;
-  margin: 0 4px -2px 0;
+  margin: 0 10px -6px 0;
   border: 3px solid #18d26e;
   border-top-color: #eee;
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
-
 .contact .php-email-form input, .contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;

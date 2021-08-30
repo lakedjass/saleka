@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("api/v1/client")
 public class ClientController {
     private ClientService clientService;
 
@@ -30,21 +30,18 @@ public class ClientController {
 
     @PostMapping
     public Client newClient(@RequestBody @Valid Client client){
-//        if(bindingResult.hasErrors()){
-//            return null;
-//        }
-        return clientService.newClient(client);
+       return clientService.addClient(client);
     }
 
     @DeleteMapping(path = "{id}")
     public ResponseEntity<String> deleteClient(@PathVariable("id") Long id){
-        clientService.delete(id);
+        clientService.removeClient(id);
         return ResponseEntity.ok().body("Suppression");
     }
 
     @PutMapping(path = "{id}")
     public Client updateClient(@PathVariable("id") Long id,@RequestBody @Valid Client client){
-        return clientService.updateClient(id,client);
+        return clientService.addClient(client,id);
     }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

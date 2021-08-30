@@ -1,5 +1,6 @@
 POST http://localhost:8080/contact/sendemail
 Content-Type: application/json
+
 {
   "message":"junior@gmail.com",
   "name":"junior",

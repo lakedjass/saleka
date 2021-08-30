@@ -5,7 +5,6 @@ import com.saleka.application.configuration.ConfigurationSite;
 import com.saleka.application.notification.client.Client;
 import com.saleka.application.notification.client.ClientService;
 import com.saleka.application.notification.message.Message;
-import com.saleka.application.notification.NotificationEmail;
 import com.saleka.application.notification.Notifier;
 import com.saleka.application.notification.message.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +36,15 @@ public class ContactController {
     public String newcontact(Model model, @RequestParam(required = false) Long id){
         List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
         model.addAttribute("site", configurationAllSite);
+//        if(id!=null){
+//            model.addAttribute("client",clientService.findById(id));
+//        }
+        return "site/contact";
+    }
+    @PostMapping("/contact")
+    public String newcontactPost(Model model, @RequestParam(required = false) Long id){
+        List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
+        model.addAttribute("site", configurationAllSite);
         if(id!=null){
             model.addAttribute("client",clientService.findById(id));
         }
@@ -46,34 +54,40 @@ public class ContactController {
     public String contact(Model model, @PathVariable(value = "id",required = false) Long id){
         List<ConfigurationSite> configurationAllSite = configurationService.getAllSiteConfigurations();
         model.addAttribute("site", configurationAllSite);
-        if(id!=null){
-            model.addAttribute("client",clientService.findById(id));
-        }
+//        if(id!=null){
+//            model.addAttribute("client",clientService.findById(id));
+//        }
         return "site/contact";
     }
 
     @PostMapping("/contact/newmessage")
     @ResponseBody
-    public ResponseEntity contact(@Valid Message message,@Valid Client client, BindingResult bindingResult){
+    public ResponseEntity contact( Message message, @Valid Client client,BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return new ResponseEntity<String>("Bad",HttpStatus.BAD_REQUEST);
         }
         message.setClient(client);
-        message = messageService.saveMessage(message);
+        message = messageService.addMessage(message);
         if(message != null){
             notifier.notify(message);
         }
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
     @PostMapping("/addnewsletter")
-    public ResponseEntity<String> newsLetter(@ModelAttribute("email") Message message){
+    public ResponseEntity<String> newsLetter(Client client){
+        client.setNewsLetter(true);
+        clientService.addClient(client);
+
+        Message message = new Message();
         message.setSubject("Ajout a la newsLetter");
-        message.setBody("je vous suis actuellement");
-        message = messageService.saveMessage(message);
+        message.setBody("Vous nous suivez actuellement");
+        message.setClient(client);
+        message = messageService.addMessage(message);
         if(message != null){
             notifier.notify(message);
         }
         return new ResponseEntity<String>("OK",HttpStatus.OK);
     }
+
 
 }

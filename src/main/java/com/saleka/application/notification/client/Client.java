@@ -1,13 +1,12 @@
 package com.saleka.application.notification.client;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import com.saleka.application.notification.message.Message;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,14 +22,25 @@ public class Client {
     private String name;
 
     @Column(unique = true)
-    @Email(message = "email invalid",regexp ="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
-    @NotNull
+    @Email(message = "l'email doit etre valide",regexp ="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+    @NotNull(message = "l'email ne doit pas etre nul")
     private String email;
 
+    private Boolean newsLetter;
+
     @OneToMany(mappedBy = "client" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    //@JsonManagedReference
-    @JsonIgnore
+    @JsonBackReference
     private List<Message> mailList;
+
+    public Client() {
+        mailList = new ArrayList<>();
+    }
+
+    public Client(String email,String name) {
+        this.name = name;
+        this.email = email;
+        mailList = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -64,4 +74,11 @@ public class Client {
         this.mailList = mailList;
     }
 
+    public Boolean getNewsLetter() {
+        return newsLetter;
+    }
+
+    public void setNewsLetter(Boolean newsLetter) {
+        this.newsLetter = newsLetter;
+    }
 }

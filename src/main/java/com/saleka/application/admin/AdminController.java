@@ -2,6 +2,8 @@ package com.saleka.application.admin;
 
 import com.saleka.application.configuration.ConfigurationService;
 import com.saleka.application.configuration.ConfigurationSite;
+import com.saleka.application.notification.message.Message;
+import com.saleka.application.notification.message.MessageService;
 import com.saleka.application.security.User;
 import com.saleka.application.security.UserPrincipal;
 import com.saleka.application.security.UserRepository;
@@ -22,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MessageService messageService;
 
     @GetMapping("/dashboard")
     public String index(Model model){
@@ -207,8 +212,6 @@ public class AdminController {
         model.addAttribute("usersList", usersList);
         return "admin/users";
     }
-
-
 }
 
 

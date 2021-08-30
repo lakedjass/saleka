@@ -8,3 +8,5 @@ puis lancer le projet.
 
 pensez à remettre le alreadySetup à true pour éviter les erreur d'intégrité en console lors du prochain lancement du projet
 .
+
+Lancez maildev de npm avant l'execution.

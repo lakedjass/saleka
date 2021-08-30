@@ -1,13 +1,14 @@
 package com.saleka.application.notification.message;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.saleka.application.notification.client.Client;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,13 +20,12 @@ public class Message {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonManagedReference
     @NotNull(message = "le client ne peut etre null")
     private Client client;
 
     @Column(nullable = false, columnDefinition = "TEXT", length = 255)
     @NotBlank(message = "le sujet ne peut etre vide")
-    @NotNull
     private String subject;
 
     @Column(nullable = false, columnDefinition = "TEXT", length = 500)
@@ -35,6 +35,13 @@ public class Message {
     private Date date;
 
     public Message(){
+        this.date = new Date();
+    }
+
+    public Message(Client client,String subject,String body) {
+        this.client = client;
+        this.subject = subject;
+        this.body = body;
         this.date = new Date();
     }
 
@@ -63,7 +70,7 @@ public class Message {
     }
 
 
-    public Date getDate() {
+    public java.util.Date getDate() {
         return date;
     }
 

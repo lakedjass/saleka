@@ -67,4 +67,31 @@ class MessageTest {
                 .extracting(ConstraintViolation::getMessage)
                 .contains("le sujet ne peut etre vide");
     }
+    @Test
+    public void whenBlankBody_thenOneConstraintViolation(){
+        message.setBody(" ");
+        Set<ConstraintViolation<Message>> violations = validator.validate(message);
+        assertThat(violations)
+                .hasSize(1)
+                .extracting(ConstraintViolation::getMessage)
+                .contains("le message est obligatoire");
+    }
+    @Test
+    public void whenNullBody_thenOneConstraintViolation(){
+        message.setBody(null);
+        Set<ConstraintViolation<Message>> violations = validator.validate(message);
+        assertThat(violations)
+                .hasSize(1)
+                .extracting(ConstraintViolation::getMessage)
+                .contains("le message est obligatoire");
+    }
+    @Test
+    public void whenEmptyBody_thenOneConstraintViolation(){
+        message.setBody("");
+        Set<ConstraintViolation<Message>> violations = validator.validate(message);
+        assertThat(violations)
+                .hasSize(1)
+                .extracting(ConstraintViolation::getMessage)
+                .contains("le message est obligatoire");
+    }
 }

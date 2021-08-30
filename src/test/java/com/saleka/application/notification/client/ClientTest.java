@@ -11,6 +11,7 @@ import javax.validation.Validator;
 
 import java.util.Set;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClientTest {
@@ -35,18 +36,25 @@ class ClientTest {
     public void whenValidEmail_thenNoConstraintViolation(){
         client.setEmail("kouam@gmail.com");
         Set<ConstraintViolation<Client>> violations = validator.validate(client);
-        assertEquals(violations.size(),0);
+        assertThat(violations)
+                .hasSize(0);
     }
     @Test
     public void whenNullEmail_thenOneConstraintViolation(){
         Set<ConstraintViolation<Client>> violations = validator.validate(client);
-        assertEquals(violations.size(),1);
+        assertThat(violations)
+                .hasSize(1)
+                .extracting(ConstraintViolation::getMessage)
+                .contains("l'email ne doit pas etre nul");
     }
     @Test
     public void whenNotValidEmail_thenOneConstraintViolation(){
         client.setEmail("kouam");
         Set<ConstraintViolation<Client>> violations = validator.validate(client);
-        assertEquals(violations.size(),1);
+        assertThat(violations)
+                .hasSize(1)
+                .extracting(ConstraintViolation::getMessage)
+                .contains("l'email doit etre valide");
     }
 
 }
