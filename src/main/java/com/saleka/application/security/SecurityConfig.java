@@ -1,5 +1,7 @@
 package com.saleka.application.security;
 
+import com.saleka.application.oauth2.CustomOAuth2UserService;
+import com.saleka.application.oauth2.OAuth2LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,11 +26,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AccessDeniedHandler accessDeniedHandler;
     @Autowired
     private LoginSuccessHandler loginSuccessHandler;
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,10 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authenticationProvider(getProvider())
                 .authorizeRequests()
+                .antMatchers("/oauth2/**").permitAll()
                 .antMatchers("/").permitAll()
-//                .antMatchers("/admin/listConfiguration").hasRole("HERO")
-//                .antMatchers("/admin/dashboard").hasRole("ADMIN")
-//                .antMatchers("/admin/users").hasRole("ADMIN")
+                .antMatchers("/admin/listConfiguration").hasRole("HERO")
+                .antMatchers("/admin/dashboard").hasRole("ADMIN")
+                .antMatchers("/admin/users").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
@@ -47,7 +55,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login")
                     .successHandler(loginSuccessHandler)
                 .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+                .oauth2Login()
+                    .loginPage("/login")
+                    .userInfoEndpoint().userService(customOAuth2UserService)
+                    .and()
+                    .successHandler(oAuth2LoginSuccessHandler)
+
+
+                //.exceptionHandling().accessDeniedHandler(accessDeniedHandler)
         ;
     }
 
@@ -78,5 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         expressionHandler.setRoleHierarchy(roleHierarchy());
         return expressionHandler;
     }
+
+
 }
 

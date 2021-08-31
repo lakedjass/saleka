@@ -29,8 +29,6 @@ public class FixtureBlog implements
         ApplicationListener<ContextRefreshedEvent> {
 
     boolean alreadySetup = true;
-
-
     @Autowired
     private UserRepository userRepository;
 

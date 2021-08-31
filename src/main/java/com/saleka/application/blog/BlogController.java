@@ -10,6 +10,7 @@ import com.saleka.application.blog.tag.Tag;
 import com.saleka.application.blog.tag.TagService;
 import com.saleka.application.configuration.ConfigurationService;
 import com.saleka.application.configuration.ConfigurationSite;
+import com.saleka.application.configuration.FileUploadUtil;
 import com.saleka.application.security.User;
 import com.saleka.application.security.UserPrincipal;
 import com.saleka.application.security.UserService;
@@ -18,15 +19,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
-public class BlogController implements WebMvcConfigurer {
+public class BlogController {
     private final PostService postService;
     private final UserService userService;
     private final CategoryService categoryService;
@@ -49,7 +53,7 @@ public class BlogController implements WebMvcConfigurer {
 
     @GetMapping("/blog")
     public String viewBlog(@RequestParam(required = false , defaultValue = "1") int page , Model model){
-        int size = 2;
+        int size = 16;
         int size_for_recentsPost = 5;
         List<Category> categories = categoryService.getCategories();
         Page<Post> pagePosts = postService.getPosts(page , size);
@@ -104,13 +108,7 @@ public class BlogController implements WebMvcConfigurer {
 
     @GetMapping("admin/tags")
     public String getTags(@RequestParam(required = false , defaultValue = "1") int page ,Model model){
-        int size = 5;
-        Page<Tag> pageTags = tagService.getTags(page , size);
-        List<Tag> tags = pageTags.getContent();
-        model.addAttribute("tags", tags);
-        model.addAttribute("currentPage" , page);
-        model.addAttribute("totalPages", pageTags.getTotalPages());
-        model.addAttribute("totalItems", pageTags.getTotalElements());
+        model.addAttribute("tags", tagService.getTags());
         UserPrincipal principal = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("user", principal);
         return "admin/blog/list-tags";
@@ -118,15 +116,8 @@ public class BlogController implements WebMvcConfigurer {
 
     @GetMapping("admin/comments")
     public String getComments(@RequestParam(required = false , defaultValue = "1") int page ,Model model){
-        int size = 5;
-        Page<Comment> pageComments = commentService.getComments(page , size);
-        List<Comment> comments = pageComments.getContent();
-        List<Post> posts = postService.getPosts();
-        model.addAttribute("comments", comments);
-        model.addAttribute("posts", posts);
-        model.addAttribute("currentPage" , page);
-        model.addAttribute("totalPages", pageComments.getTotalPages());
-        model.addAttribute("totalItems", pageComments.getTotalElements());
+        model.addAttribute("comments", commentService.getComments());
+        model.addAttribute("posts", postService.getPosts());
         UserPrincipal principal = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("user", principal);
         return "admin/blog/list-comments";
@@ -134,13 +125,8 @@ public class BlogController implements WebMvcConfigurer {
 
     @GetMapping("admin/categories")
     public String getCategories(@RequestParam(required = false , defaultValue = "1") int page ,Model model){
-        int size = 5;
-        Page<Category> pageCategories = categoryService.getCategories(page , size);
-        List<Category> categories = pageCategories.getContent();
+        List<Category> categories = categoryService.getCategories();
         model.addAttribute("categories", categories);
-        model.addAttribute("currentPage" , page);
-        model.addAttribute("totalPages", pageCategories.getTotalPages());
-        model.addAttribute("totalItems", pageCategories.getTotalElements());
         UserPrincipal principal = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("user", principal);
         return "admin/blog/list-categories";
@@ -148,13 +134,13 @@ public class BlogController implements WebMvcConfigurer {
 
     @GetMapping("admin/posts")
     public String getPosts(@RequestParam(required = false , defaultValue = "1") int page ,Model model){
-        int size = 5;
-        Page<Post> pagePosts = postService.getPosts(page , size);
-        List<Post> posts = pagePosts.getContent();
-        model.addAttribute("posts", posts);
-        model.addAttribute("currentPage" , page);
-        model.addAttribute("totalPages", pagePosts.getTotalPages());
-        model.addAttribute("totalItems", pagePosts.getTotalElements());
+//        int size = 5;
+//        Page<Post> pagePosts = postService.getPosts(page , size);
+//        List<Post> posts = pagePosts.getContent();
+        model.addAttribute("posts", postService.getPosts());
+//        model.addAttribute("currentPage" , page);
+//        model.addAttribute("totalPages", pagePosts.getTotalPages());
+//        model.addAttribute("totalItems", pagePosts.getTotalElements());
         UserPrincipal principal = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("user", principal);
         return "admin/blog/list-posts";
@@ -169,11 +155,11 @@ public class BlogController implements WebMvcConfigurer {
         }else{
             categoryService.updateCategory(Long.parseLong(catId),category);
         }
-        return "redirect:categories";
+        return "redirect:/admin/categories";
     }
 
     @PostMapping("admin/addPost")
-    public String newPost(@Valid Post postForm, @RequestParam(required = false) Collection<String> categoryIdList , @RequestParam(required = false) Collection<String> tagIdList , @RequestParam(required = false) String postId , BindingResult bindingResult){
+    public String newPost(@Valid Post postForm ,  BindingResult bindingResult, @RequestParam(required = false) Collection<String> categoryIdList , @RequestParam(required = false) Collection<String> tagIdList , @RequestParam(required = false) String postId, @RequestParam(required = false , value = "filename") MultipartFile multipartFile ){
         UserPrincipal principal = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         if(bindingResult.hasErrors()){
             return "admin/blog/new-post";
@@ -191,13 +177,26 @@ public class BlogController implements WebMvcConfigurer {
         );
         postForm.setCategories(categories);
         postForm.setTags(tags);
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        postForm.setMainImageFile(fileName);
+        Long id ;
         if(postId == null){
-            postService.newPost(postForm);
+            Post result = postService.newPost(postForm);
+            id = result.getId();
         }else {
             postService.updatePost(Long.parseLong(postId) , postForm);
+            id = Long.parseLong(postId);
         }
 
-        return "redirect:posts";
+        String uploadDir = "./brand-logos/" + id ;
+
+        try {
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/admin/posts";
     }
 
     @PostMapping("admin/addComment")
@@ -212,7 +211,7 @@ public class BlogController implements WebMvcConfigurer {
         }else{
             commentService.updateComment(Long.parseLong(commentId) , comment);
         }
-        return "redirect:comments";
+        return "redirect:/admin/comments";
     }
 
     @PostMapping("admin/addTag")
@@ -222,7 +221,7 @@ public class BlogController implements WebMvcConfigurer {
         }else{
             tagService.updateTag(Long.parseLong(tagId) , tag);
         }
-        return "redirect:tags";
+        return "redirect:/admin/tags";
     }
 
     @GetMapping("admin/addPost")
@@ -262,24 +261,24 @@ public class BlogController implements WebMvcConfigurer {
     @GetMapping("admin/deletePost")
     public String deletePost(@RequestParam() Long id){
         postService.deletePost(id);
-        return "redirect:posts";
+        return "redirect:/admin/posts";
     }
 
     @GetMapping("admin/deleteCategory")
     public String deleteCategory(@RequestParam() Long id){
         categoryService.deleteCategory(id);
-        return "redirect:categories";
+        return "redirect:/admin/categories";
     }
 
     @GetMapping("admin/deleteComment")
     public String deleteComment(@RequestParam() Long id){
         commentService.deleteComment(id);
-        return "redirect:comments";
+        return "redirect:/admin/comments";
     }
 
     @GetMapping("admin/deleteTag")
     public String deleteTag(@RequestParam() Long id){
         commentService.deleteComment(id);
-        return "redirect:tags";
+        return "redirect:/admin/tags";
     }
 }

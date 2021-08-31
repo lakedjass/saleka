@@ -23,8 +23,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User author;
+
+    @Column(nullable = true)
+    private String mainImageFile;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "post_category",
@@ -41,6 +44,7 @@ public class Post {
     @NotBlank
     private String body;
 
+    @Column(nullable = false)
     private Date doc;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -121,6 +125,19 @@ public class Post {
         this.comments = comments;
     }
 
+    public String getMainImageFile() {
+        return mainImageFile;
+    }
+
+    public void setMainImageFile(String mainImageFile) {
+        this.mainImageFile = mainImageFile;
+    }
+
+    @Transient
+    public String getMainImageFilePath(){
+        return "/images/blog/" + getId() + "/" + mainImageFile;
+    }
+
     public void setAllProperties(Post post , boolean withId){
         setBody(post.getBody());
         setDoc(post.getDoc());
@@ -128,6 +145,8 @@ public class Post {
         setAuthor(post.getAuthor());
         setCategories(post.getCategories());
         setTags(post.getTags());
+        setComments(post.getComments());
+        setMainImageFile(post.getMainImageFile());
         if(withId){
             setId(post.getId());
         }
