@@ -1,0 +1,17 @@
+
+input:required, textarea:required{
+    background: url("") 98% center no-repeat;
+}
+input:focus:invalid, textarea:focus:invalid{
+    border-color: #FF0000;
+    background-image: none;
+    box-shadow: #d45252,0,0,5px;
+}
+input:focus:valid, textarea:focus:valid{
+    border-color: #56c93f;
+    background-image: none;
+    box-shadow: #56c93f,0,0,5px;
+}
+input:valid,textarea:valid{
+    background-image: none;
+}

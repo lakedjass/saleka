@@ -1520,9 +1520,30 @@ section {
   padding: 15px;
   font-weight: 600;
 }
-
+.newsLetter .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: left;
+  padding: 5px;
+  font-weight: 600;
+}
 .contact .php-email-form .error-message br + br {
   margin-top: 25px;
+}
+.newsLetter i{
+  position: absolute;
+  top: 40px;
+  right: 10px;
+}
+.newsLetter small{
+  visibility: visible;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.newsLetter .error-message br {
+  margin-top: 7px;
 }
 
 .contact .php-email-form .sent-message {
@@ -1533,12 +1554,25 @@ section {
   padding: 15px;
   font-weight: 600;
 }
-
+.newsLetter .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 5px;
+  font-weight: 600;
+}
 .contact .php-email-form .loading {
   display: none;
   background: #fff;
   text-align: center;
   padding: 15px;
+}
+.newsLetter .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 5px;
 }
 
 .contact .php-email-form .loading:before {
@@ -1553,7 +1587,18 @@ section {
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
-
+.newsLetter .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
 .contact .php-email-form input, .contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;

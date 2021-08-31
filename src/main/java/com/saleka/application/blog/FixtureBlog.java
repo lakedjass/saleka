@@ -8,6 +8,7 @@ import com.saleka.application.blog.post.Post;
 import com.saleka.application.blog.post.PostRepository;
 import com.saleka.application.blog.tag.Tag;
 import com.saleka.application.blog.tag.TagRepository;
+import com.saleka.application.configuration.ConfigurationSiteRepository;
 import com.saleka.application.security.User;
 import com.saleka.application.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,6 @@ public class FixtureBlog implements
         ApplicationListener<ContextRefreshedEvent> {
 
     boolean alreadySetup = true;
-
     @Autowired
     private UserRepository userRepository;
 
@@ -180,7 +180,7 @@ public class FixtureBlog implements
         posts.add(post4);
 
         Post post5 = new Post();
-//        post5.setAuthor(user2);
+        //post5.setAuthor(user2);
         post5.setCategories(categories.subList(1,5));
         post5.setTags(tags.subList(2,8));
         post5.setTitle("Orages, grêle, vent : 11 départements en vigilance orange");

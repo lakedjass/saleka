@@ -1,0 +1,20 @@
+POST http://localhost:8080/client
+Content-Type: application/json
+
+{
+  "id": 10,
+  "name": "juniorkouam",
+  "email": "kouamjunior1999@gmail.com"
+}
+###
+GET http://localhost:8080/client
+
+###
+PUT http://localhost:8080/client/10
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": "rien",
+  "email": "kouamjunior1999@gmail.com"
+}

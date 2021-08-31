@@ -333,6 +333,30 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-plus-square"></i>
+                            <p>
+                                Notification
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" th:href="@{/admin/mailbox}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>MailBox</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#" th:href="@{/admin/compose}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Compose</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-header"><i class="nav-icon fas fa-table"></i><strong>GESTION DES UTILISATEURS</strong></li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -486,6 +510,8 @@
 <script src="/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Select Plugins -->
+<script src="dist/js/bootstrap-select.js"></script>
+<script src="dist/js/pages/message.js"></script>
 <script src="/admin/dist/js/bootstrap-select.js"></script>
 <!--<script>
     $(function () {
@@ -527,6 +553,8 @@
     $(function () {
         // Summernote
         $('#summernote').summernote()
+        $('.popConteneur .form-popup .form-group textarea').summernote()
+
 
         // CodeMirror
         // CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
@@ -534,6 +562,9 @@
         //     theme: "monokai"
         // });
     })
+</script>
+<script>
+
 </script>
 </body>
 </html>

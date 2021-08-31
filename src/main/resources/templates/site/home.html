@@ -11,8 +11,8 @@
   <!-- Hero -->
   <section layout:fragment="hero" th:value="${site[0].getImagePrincipal()}" id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container" data-aos="fade-in">
-      <h1 th:text="${site[0].getTitrePrincipal()}">Welcome to Flexor</h1>
-      <h2 th:text="${site[0].getSousTitrePrincipal()}">We are team of talented designers making websites with Bootstrap</h2>
+      <h1 th:utext="${site[0].getTitrePrincipal()}">Welcome to Flexor</h1>
+      <h2 th:utext="${site[0].getSousTitrePrincipal()}">We are team of talented designers making websites with Bootstrap</h2>
       <div class="d-flex align-items-center">
         <i class="bx bxs-right-arrow-alt get-started-icon"></i>
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
@@ -29,8 +29,8 @@
           <div class="row">
             <div class="col-xl-4 col-lg-5" data-aos="fade-up">
               <div class="content">
-                <h3 th:text="${site[0].getBloc1WhyusTitre()}">Why Choose Flexor for your company website?</h3>
-                <p th:text="${site[0].getBloc1WhyusSousTitre()}">
+                <h3 th:utext="${site[0].getBloc1WhyusTitre()}">Why Choose Flexor for your company website?</h3>
+                <p th:utext="${site[0].getBloc1WhyusSousTitre()}">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
                 </p>
@@ -45,22 +45,22 @@
                   <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon-box mt-4 mt-xl-0">
                       <i class="bx bx-receipt"></i>
-                      <h4 th:text="${site[0].getBloc2WhyusBoite1Titre()}">Corporis voluptates sit</h4>
-                      <p th:text="${site[0].getBloc2WhyusBoite1SousTitre()}">Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                      <h4 th:utext="${site[0].getBloc2WhyusBoite1Titre()}">Corporis voluptates sit</h4>
+                      <p th:utext="${site[0].getBloc2WhyusBoite1SousTitre()}">Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
                     </div>
                   </div>
                   <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-box mt-4 mt-xl-0">
                       <i class="bx bx-cube-alt"></i>
-                      <h4 th:text="${site[0].getBloc2WhyusBoite2Titre()}">Ullamco laboris ladore pan</h4>
-                      <p th:text="${site[0].getBloc2WhyusBoite2SousTitre()}">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                      <h4 th:utext="${site[0].getBloc2WhyusBoite2Titre()}">Ullamco laboris ladore pan</h4>
+                      <p th:utext="${site[0].getBloc2WhyusBoite2SousTitre()}">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
                     </div>
                   </div>
                   <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                     <div class="icon-box mt-4 mt-xl-0">
                       <i class="bx bx-images"></i>
-                      <h4 th:text="${site[0].getBloc2WhyusBoite3Titre()}">Labore consequatur</h4>
-                      <p th:text="${site[0].getBloc2WhyusBoite3SousTitre()}">Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                      <h4 th:utext="${site[0].getBloc2WhyusBoite3Titre()}">Labore consequatur</h4>
+                      <p th:utext="${site[0].getBloc2WhyusBoite3SousTitre()}">Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
                     </div>
                   </div>
                 </div>
@@ -81,26 +81,26 @@
             </div>
 
             <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-              <h4 th:text="${site[0].getBloc2AboutTitre1()}" data-aos="fade-up">About us</h4>
-              <h3 th:text="${site[0].getBloc2AboutTitre2()}" data-aos="fade-up" >Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-              <p th:text="${site[0].getBloc2AboutSousTitre2()}" data-aos="fade-up" >Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+              <h4 th:utext="${site[0].getBloc2AboutTitre1()}" data-aos="fade-up">About us</h4>
+              <h3 th:utext="${site[0].getBloc2AboutTitre2()}" data-aos="fade-up" >Enim quis est voluptatibus aliquid consequatur fugiat</h3>
+              <p th:utext="${site[0].getBloc2AboutSousTitre2()}" data-aos="fade-up" >Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
 
               <div class="icon-box" data-aos="fade-up">
                 <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                <h4 class="title"><a href="" th:text="${site[0].getBloc3AboutTitre1()}">Lorem Ipsum</a></h4>
-                <p class="description" th:text="${site[0].getBloc3AboutSousTitre1()}">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                <h4 class="title"><a href="" th:utext="${site[0].getBloc3AboutTitre1()}">Lorem Ipsum</a></h4>
+                <p class="description" th:utext="${site[0].getBloc3AboutSousTitre1()}">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
               </div>
 
               <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon"><i class="bx bx-gift"></i></div>
-                <h4 class="title"><a href="" th:text="${site[0].getBloc3AboutTitre2()}">Nemo Enim</a></h4>
-                <p class="description" th:text="${site[0].getBloc3AboutSousTitre2()}">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                <h4 class="title"><a href="" th:utext="${site[0].getBloc3AboutTitre2()}">Nemo Enim</a></h4>
+                <p class="description" th:utext="${site[0].getBloc3AboutSousTitre2()}">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
               </div>
 
               <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                 <div class="icon"><i class="bx bx-atom"></i></div>
-                <h4 class="title"><a href="" th:text="${site[0].getBloc3AboutTitre3()}">Dine Pad</a></h4>
-                <p class="description" th:text="${site[0].getBloc3AboutSousTitre3()}">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                <h4 class="title"><a href="" th:utext="${site[0].getBloc3AboutTitre3()}">Dine Pad</a></h4>
+                <p class="description" th:utext="${site[0].getBloc3AboutSousTitre3()}">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
               </div>
 
             </div>
@@ -135,30 +135,30 @@
         <div class="container">
 
           <div class="section-title" data-aos="fade-up">
-            <h2 th:text="${site[0].getTitreService()}">Services</h2>
-            <p th:text="${site[0].getDescriptionService()}">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <h2 th:utext="${site[0].getTitreService()}">Services</h2>
+            <p th:utext="${site[0].getDescriptionService()}">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
           </div>
 
           <div class="row">
             <div class="col-lg-4 col-md-6" data-aos="fade-up">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-briefcase"></i></div>
-                <h4 class="title"><a href="" th:text="${site[0].getBloc1ServiceTitre1()}">Lorem Ipsum</a></h4>
-                <p class="description" th:text="${site[0].getBloc1ServiceSoustitre1()}">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                <h4 class="title"><a href="" th:utext="${site[0].getBloc1ServiceTitre1()}">Lorem Ipsum</a></h4>
+                <p class="description" th:utext="${site[0].getBloc1ServiceSoustitre1()}">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-card-checklist"></i></div>
-                <h4 class="title"><a href="" th:text="${site[0].getBloc1ServiceTitre2()}">Dolor Sitema</a></h4>
-                <p class="description" th:text="${site[0].getBloc1ServiceSoustitre2()}">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                <h4 class="title"><a href="" th:utext="${site[0].getBloc1ServiceTitre2()}">Dolor Sitema</a></h4>
+                <p class="description" th:utext="${site[0].getBloc1ServiceSoustitre2()}">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-bar-chart"></i></div>
-                <h4 class="title"><a href="" th:text="${site[0].getBloc1ServiceTitre3()}">Sed ut perspiciatis</a></h4>
-                <p class="description" th:text="${site[0].getBloc1ServiceSoustitre3()}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                <h4 class="title"><a href="" th:utext="${site[0].getBloc1ServiceTitre3()}">Sed ut perspiciatis</a></h4>
+                <p class="description" th:utext="${site[0].getBloc1ServiceSoustitre3()}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
@@ -194,8 +194,8 @@
             <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
               <div class="card" style="background-image: url(assets/img/values-1.jpg);">
                 <div class="card-body">
-                  <h5 class="card-title"><a href="" th:text="${site[0].getOurMissionTitre()}">Our Mission</a></h5>
-                  <p class="card-text" th:text="${site[0].getOurMissionDescription()}">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+                  <h5 class="card-title"><a href="" th:utext="${site[0].getOurMissionTitre()}">Our Mission</a></h5>
+                  <p class="card-text" th:utext="${site[0].getOurMissionDescription()}">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
                   <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
                 </div>
               </div>
@@ -203,8 +203,8 @@
             <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="100">
               <div class="card" style="background-image: url(assets/img/values-2.jpg);">
                 <div class="card-body">
-                  <h5 class="card-title"><a href="" th:text="${site[0].getOurPlanTitre()}">Our Plan</a></h5>
-                  <p class="card-text" th:text="${site[0].getOurPlanDescription()}">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem.</p>
+                  <h5 class="card-title"><a href="" th:utext="${site[0].getOurPlanTitre()}">Our Plan</a></h5>
+                  <p class="card-text" th:utext="${site[0].getOurPlanDescription()}">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem.</p>
                   <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
                 </div>
               </div>
@@ -670,7 +670,7 @@
 
         <div class="section-title">
           <h2 data-aos="fade-up">Contact</h2>
-          <p data-aos="fade-up" th:text="${site[0].getContactDescription()}">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p data-aos="fade-up" th:utext="${site[0].getContactDescription()}">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
         <div class="row justify-content-center">
@@ -679,7 +679,7 @@
             <div class="info-box">
               <i class="bx bx-map"></i>
               <h3>Our Address</h3>
-              <p th:text="${site[0].getAdresse()}">A108 Adam Street, New York, NY 535022</p>
+              <p th:utext="${site[0].getAdresse()}">A108 Adam Street, New York, NY 535022</p>
             </div>
           </div>
 
@@ -687,34 +687,39 @@
             <div class="info-box">
               <i class="bx bx-envelope"></i>
               <h3>Email Us</h3>
-              <p th:text="${site[0].getEmailCorp()}">info@example.com<br>contact@example.com</p>
+              <p th:utext="${site[0].getEmailCorp()}">info@example.com<br>contact@example.com</p>
             </div>
           </div>
           <div class="col-xl-3 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="200">
             <div class="info-box">
               <i class="bx bx-phone-call"></i>
               <h3>Call Us</h3>
-              <p th:text="${site[0].getTelCorp()}">+1 5589 55488 55<br>+1 6678 254445 41</p>
+              <p th:utext="${site[0].getTelCorp()}">+1 5589 55488 55<br>+1 6678 254445 41</p>
             </div>
           </div>
         </div>
 
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
           <div class="col-xl-9 col-lg-12 mt-4">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
+            <!--/*@thymesVar id="message" type="com.saleka.application.notification.message.Message"*/-->
+            <form th:action="@{/contact/newmessage}" th:object="${message}" method="post" role="form" class="php-email-form">
+              <!--/*@thymesVar id="newClient" type="com.saleka.application.notification.client.Client"*/-->
+              <div class="row"th:object="${newClient}">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required pattern="^\s+*.\S$" title="Pas d'espace en debut et en fin">
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"  required >
                 </div>
               </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+
+              <div>
+                <div class="form-group mt-3">
+                  <input type="text" class="form-control" th:name="subject" placeholder="Subject" required pattern="^\s+*.\S$" minlength="5" maxlength="20" title="Pas d'espace en debut et en fin">
+                </div>
+                <div class="form-group mt-3">
+                  <textarea class="form-control"th:name="body" rows="5" placeholder="Message" required pattern="^\s+*.\S$" minlength="20" title="Pas d'espace en debut et en fin"></textarea>
+                </div>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
