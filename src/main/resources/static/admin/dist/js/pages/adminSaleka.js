@@ -149,23 +149,37 @@ function handleShowDialogButton(btnElement, dialogBox){
 
 })();
 
-(function() {
-    const backgroundBlock = document.querySelector("#hero")
-    const newImageHome = backgroundBlock.getAttribute(value)
-    console.log(newImageHome)
-    if (backgroundBlock){
-        backgroundBlock.style.background = `url('/media/images/'+ ${newImageHome}) center center`;
+const previewImage = function (fileInput , myElement) {
+    //console.log('test preview');
+    var file = fileInput.files[0];
+    var filesCount = $(fileInput)[0].files.length;
+    debugger
+    if(filesCount === 1){
+        var textBox = $(fileInput).prev();
+        var fileName = $(fileInput).val().split('\\').pop();
+        textBox.text(fileName);
+    }else{
+        return;
     }
+    if (typeof (FileReader) != "undefined") {
+        var previewImg = $(''+myElement.toString());
+        previewImg.html("");
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = $("<img />");
+            img.attr("style", "width: 150px; height:100px; padding: 10px");
+            img.attr("src", e.target.result);
+            previewImg.append(img);
+        };
+        reader.readAsDataURL(file);
+    }else {
+        alert("This browser does not support HTML5 FileReader.");
+    }
+}
 
-})();
-
-
-
-$(document).on('change', '.file-input', function() {
-
-
+/*
+const handlePreview = function() {
     var filesCount = $(this)[0].files.length;
-
     var textbox = $(this).prev();
 
     if (filesCount === 1) {
@@ -186,10 +200,19 @@ $(document).on('change', '.file-input', function() {
                 img.attr("style", "width: 150px; height:100px; padding: 10px");
                 img.attr("src", e.target.result);
                 dvPreview.append(img);
+                dvPreviewBlog.append(img);
             }
             reader.readAsDataURL(file[0]);
         });
     } else {
         alert("This browser does not support HTML5 FileReader.");
     }
-});
+
+}
+*/
+
+$('#exampleInputFile').change(function () {
+    previewImage(this , '#divImageMediaPreview');
+})
+
+//$(document).on('change', '#exampleInputFile', previewImage(this , '#profilePreview') );

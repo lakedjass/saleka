@@ -1,7 +1,9 @@
 package com.saleka.application.security;
 
+import com.saleka.application.oauth2.AuthenticationProvider;
 import groovy.util.logging.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,6 +50,16 @@ public class UserService implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException(email);
         }
+        return user;
+    }
+
+    public User registerNewUserAfterOAuthLoginSuccess(String email, String name, AuthenticationProvider provider){
+        User user = new User();
+        user.setEmail(email);
+        user.setEnabled(true);
+        user.setFirstName(name);
+        user.setAuthenticationProvider(provider);
+        userRepository.save(user);
         return user;
     }
 

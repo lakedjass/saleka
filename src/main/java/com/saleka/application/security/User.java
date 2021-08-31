@@ -3,14 +3,11 @@ package com.saleka.application.security;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.saleka.application.blog.comment.Comment;
 import com.saleka.application.blog.post.Post;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.saleka.application.oauth2.AuthenticationProvider;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,6 +27,8 @@ public class User implements Serializable{
     private String image;
     private boolean enabled;
     private boolean tokenExpired;
+    @Enumerated(EnumType.STRING)
+    private AuthenticationProvider authenticationProvider;
 
     @JsonManagedReference
     @ManyToMany
@@ -77,6 +76,14 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public AuthenticationProvider getAuthenticationProvider() {
+        return authenticationProvider;
+    }
+
+    public void setAuthenticationProvider(AuthenticationProvider authenticationProvider) {
+        this.authenticationProvider = authenticationProvider;
     }
 
     public List<Post> getPostList() {

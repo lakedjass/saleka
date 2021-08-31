@@ -31,7 +31,8 @@
                         <article class="entry" th:each="post:${posts}">
 
                             <div class="entry-img">
-                                <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+<!--                                <img th:src="${post.getMainImageFile()} ? ''+${post.getMainImageFilePath()} : 'assets/img/blog/blog-1.jpg'" alt="" class="img-fluid">-->
+                                <img th:src="@{${post.getMainImageFilePath()}}" alt="" class="img-fluid">
                             </div>
 
                             <h2 class="entry-title">

@@ -31,7 +31,7 @@
 <!-- /.content-header -->
 
 <section layout:fragment="content" class="content">
-    <form th:action="@{/admin/addPost}" th:object="${postForm}" method="post">
+    <form th:action="@{/admin/addPost}" th:object="${postForm}" method="post" enctype="multipart/form-data">
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
@@ -59,6 +59,16 @@
                                     <label for="exampleInputEmail1">Title</label>
                                     <input th:if="${post == null}" type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter the title of the post">
                                     <input th:unless="${post == null}" type="text" th:value="${post.getTitle()}" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter the title of the post">
+<!--                                    <div th:if="${#fields.hasErrors('name')}" th:errors = "*{name}"></div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label>Main Image</label>
+                                    <div class="file-drop-area">
+                                        <span class="choose-file-button">Choose Files</span>
+                                        <span class="file-message">or drag and drop files here</span>
+                                        <input id="mainImage" type="file" name="filename" class="file-input" accept=".jfif,.jpg,.jpeg,.png,.gif"> </div>
+                                    <div id="divImageBlogMediaPreview">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="summernote">Content</label>
@@ -101,8 +111,25 @@
         </div><!-- /.container-fluid -->
 
     </form>
+
+    <!-- jQuery -->
+    <script src="/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#mainImage').change(function () {
+                previewImage(this , '#divImageBlogMediaPreview');
+            })
+        })
+
+    </script>
 </section>
 <!-- /.content -->
+
+
+
 
 </body>
 </html>

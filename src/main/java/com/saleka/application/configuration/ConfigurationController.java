@@ -31,6 +31,7 @@ public class ConfigurationController {
 
         return configurationService.getAllSiteConfigurations();
     }
+
     @PostMapping("/upload/images")
     public String savePhoto(@RequestParam("image") MultipartFile multipartFile, @RequestParam(value = "location") String location) throws IOException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -39,17 +40,23 @@ public class ConfigurationController {
             User user = userRepository.findByEmail(connectedUser.getEmail());
             user.setImage(fileName);
             userRepository.saveAndFlush(user);
+
+            String uploadDir = "src/main/resources/static/media/images/profiles/" + user.getId() + "/";
+
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         }
         if (location.equals("homepage")){
             List<ConfigurationSite> repo = configurationService.getConfigurationSite();
             ConfigurationSite configurationSiteA = repo.get(0);
             configurationSiteA.setImagePrincipal(fileName);
             configurationService.save(configurationSiteA);
-        }        
-        
-        String uploadDir = "src/main/resources/static/media/images/";
 
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            String uploadDir = "src/main/resources/static/media/images/site/";
+
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        }
+        
+
 
         return "redirect:/admin/dashboard";
     }
