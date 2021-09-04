@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -21,13 +22,13 @@ class MessageRepositoryTest {
     @Autowired
     private ClientRepository clientRepository;
     List<Message> messages ;
-    List<Client> clients = List.of(
+    List<Client> clients = Arrays.asList(
             new Client("kouam@gmail.com","kouam"),
             new Client("junior@gmail.com","junior")
     );
     @BeforeEach
     void setUp() {
-        messages = List.of(
+        messages = Arrays.asList(
                 new Message(clients.get(0),"salutation","yo junior"),
                 new Message(clients.get(1),"re:salutation","yo kouam"),
                 new Message(clients.get(1),"re:salutation","xdk?"),
@@ -51,7 +52,7 @@ class MessageRepositoryTest {
         assertThat(result)
                 .isNotNull()
                 .containsAll(
-                        List.of(
+                        Arrays.asList(
                                 messages.get(0),
                                 messages.get(3),
                                 messages.get(4)
@@ -91,7 +92,7 @@ class MessageRepositoryTest {
         assertThat(result)
                 .isNotNull()
                 .containsAll(
-                        List.of(
+                        Arrays.asList(
                                 messages.get(0),
                                 messages.get(3),
                                 messages.get(4)
@@ -108,7 +109,7 @@ class MessageRepositoryTest {
         assertThat(result)
                 .isNotNull()
                 .containsAll(
-                        List.of(
+                        Arrays.asList(
                                 messages.get(0),
                                 messages.get(3),
                                 messages.get(4)
